@@ -1,0 +1,120 @@
+<div class="review-card">
+  <div class="review-title">
+    <img src="assets\images\User-60.png" alt="" />
+    <!-- <img src="{{review?.userImage}}" alt="assets\images\User-60.png"> -->
+    <div>
+      <strong class="review-username">{{ review.userName }}</strong>
+      <p class="review-date">{{ timeAgo }}</p>
+    </div>
+    <div class="warning-icon" (click)="openComplaintWindow()">
+      <svg>
+        <use xlink:href="assets\vectors\icons\like.svg#warning"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="rate">
+    <div *ngFor="let i of numSequence(review?.rate)" class="rate-star">
+      <img src="assets\images\star-i.png" />
+    </div>
+    <div *ngFor="let i of numSequence(5 - review.rate)" class="rate-star">
+      <img src="assets\images\star-i-gray.png" />
+    </div>
+  </div>
+  <p>{{ review.message }}</p>
+</div>
+
+<app-popup-window id="{{ complaintPopupId }}">
+  <div class="complaint-window">
+    <form [formGroup]="complaintForm" (ngSubmit)="sendComplaint()">
+      <h6>Чому ви скаржитесь на цей коментар?</h6>
+      <p>
+        Перегляньте наші Правила спільноти, щоб отримати інформацію, що
+        дозволено та що заборонено на InteriorHub.
+      </p>
+      <div>
+        <div class="custom-control custom-radio">
+          <input
+            id="spam"
+            type="radio"
+            class="custom-control-input"
+            value="spam"
+            name="reason"
+            formControlName="reason"
+          />
+          <label class="custom-control-label" for="spam"
+            >Спам або не релевантно</label
+          >
+        </div>
+        <div class="custom-control custom-radio">
+          <input
+            id="adult"
+            type="radio"
+            class="custom-control-input"
+            value="adult"
+            name="reason"
+            formControlName="reason"
+          />
+          <label class="custom-control-label" for="adult"
+            >Вміст для дорослих</label
+          >
+        </div>
+        <div class="custom-control custom-radio">
+          <input
+            id="misleading"
+            type="radio"
+            class="custom-control-input"
+            value="misleading"
+            name="reason"
+            formControlName="reason"
+          />
+          <label class="custom-control-label" for="misleading">Введення в оману/ шахрайство</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input
+            id="insult"
+            type="radio"
+            class="custom-control-input"
+            value="insult"
+            name="reason"
+            formControlName="reason"
+          />
+          <label class="custom-control-label" for="insult">Образа/ дискримінація</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input
+            id="aggressive"
+            type="radio"
+            class="custom-control-input"
+            value="aggressive"
+            name="reason"
+            formControlName="reason"
+          />
+          <label class="custom-control-label" for="aggressive">Агресивні дії або висловлювання</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input
+            id="other"
+            type="radio"
+            class="custom-control-input"
+            value="other"
+            name="reason"
+            formControlName="reason"
+          />
+          <label class="custom-control-label" for="other">Інше</label>
+        </div>
+      </div>
+
+      <textarea
+        formControlName="message"
+        placeholder="Опишіть проблему..."
+      ></textarea>
+      <button
+        [disabled]="this.complaintForm.invalid"
+        class="btn btn-black"
+        type="submit"
+      >
+        Відправити
+      </button>
+    </form>
+  </div>
+</app-popup-window>

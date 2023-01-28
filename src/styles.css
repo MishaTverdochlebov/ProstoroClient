@@ -1,1 +1,173 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;700;900&display=swap");
+
+:root {
+  --white-color: #fff;
+  --extra-light-orange-color: #FFF0E7;
+  --light-orange-color: #FFE5D5;
+  --accent-color: #FF680A;
+  --accent-hover-color: #FF914D;
+  --black-color: #100F1F;
+  --black-hover-color: #32304B;
+  --dark-gray-color: #625D71;
+  --dark-neutral-color: #979797;
+  --neutral-color: #D9D9D9;
+  --gray-color: #EFEFF3;
+  --gray-hover-color: #DEDEE5;
+  --light-gray-color: #F4F4F9;
+  --extra-light-gray-color: #F9F9FB;
+  --link-color: #4F3CC9;
+  --link-hover-color: #8877F9;
+  --green-color: #37B34A;
+  --red-color: #FC3903;
+
+  --border-4-desktop: 0.278vw;
+  --border-8-desktop: 0.555vw;
+  --border-16-desktop: 1.11vw;
+  --border-32-desktop: 2.22vw;
+
+  --font-10-desktop: 0.694vw;
+  --font-12-desktop: 0.833vw;
+  --font-14-desktop: 0.972vw;
+  --font-16-desktop: 1.111vw;
+  --font-20-desktop: 1.389vw;
+  --font-24-desktop: 1.667vw;
+  --font-34-desktop: 2.361vw;
+  --font-48-desktop: 3.333vw;
+  --font-60-desktop: 4.167vw;
+  --font-96-desktop: 6.667vw;
+
+  --font-14-tablet: 1.823vw;
+  --font-16-tablet: 2.083vw;
+  --font-20-tablet: 2.604vw;
+  --font-24-tablet: 3.125vw;
+  --font-34-tablet: 4.427vw;
+  --font-48-tablet: 6.25vw;
+  --font-60-tablet: 7.812vw;
+
+  --space-5-desktop: 0.347vw;
+  --space-10-desktop: 0.694vw;
+  --space-15-desktop: 1.042vw;
+  --space-20-desktop: 1.389vw;
+  --space-30-desktop: 2.083vw;
+  --space-40-desktop: 2.778vw;
+  --space-50-desktop: 3.472vw;
+  --space-60-desktop: 4.167vw;
+  --space-70-desktop: 4.861vw;
+  --space-100-desktop: 6.944vw;
+  --space-160-desktop: 11.111vw;
+  --space-200-desktop: 13.889vw;
+  --space-240-desktop: 16.667vw;
+
+  --space-5-tablet: 0.651vw;
+  --space-10-tablet: 1.302vw;
+  --space-15-tablet: 1.953vw;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+/* h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+} */
+
+html,
+body {
+  height: 100%;
+  line-height: 1;
+  font-size: var(--font-16-desktop);
+  color: var(--black-color);
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+}
+
+* {
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+}
+
+*::selection {
+  background-color: #f4baa0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* font-family: "Yeseva One", sans-serif; */
+  font-family: "Unbounded", sans-serif;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: var(--font-60-desktop);
+}
+h3 {
+  font-size: var(--font-48-desktop);
+}
+h4 {
+  font-size: var(--font-34-desktop);
+}
+h5 {
+  font-size: var(--font-24-desktop);
+}
+h6 {
+  font-size: var(--font-20-desktop);
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  h2 {
+    font-size: var(--font-60-tablet);
+  }
+  h3 {
+    font-size: var(--font-48-tablet);
+  }
+  h4 {
+    font-size: var(--font-34-tablet);
+  }
+  h5 {
+    font-size: var(--font-24-tablet);
+  }
+  h6 {
+    font-size: var(--font-20-tablet);
+  }
+}
+
+.font-inter {
+  font-family: "Inter", sans-serif;
+}
+
+.fw-500 {
+  font-weight: 500;
+}

@@ -1,0 +1,64 @@
+<app-top-panel></app-top-panel>
+
+<div class="profile-page-container">
+  <div class="profile-avatar-container">
+    <img class="m-bottom-20" src="{{!profileInfo?.imgUrl ? 'assets\\images\\User-60.png' : profileInfo?.imgUrl}}" alt="" />
+    <p class="m-bottom-20">{{profileInfo.name}}</p>
+    <a href="/profile-settings" class="btn">Налаштування</a>
+  </div>
+  <div class="profile-saves-container">
+    <h6 class="m-bottom-10">Мої підбірки</h6>
+    <div class="profile-saves-list">
+      <div class="saves-card-box">
+        <div class="saves-card">
+          <a href="saves/projects" class="rect-container">
+            <div
+              class="quarter-image-box"
+              *ngFor="let project of projectsFolder"
+            >
+              <img class="quarter-image" src="{{ project?.imageUrl }}" alt="" />
+            </div>
+            <div
+              class="quarter-image-box"
+              *ngFor="let project of numSequenceOfRemaining(projectsFolder)"
+            ></div>
+          </a>
+          <div class="saves-card-title">
+            <span>Натхнення</span>
+          </div>
+        </div>
+      </div>
+      <div class="saves-card-box">
+        <div class="saves-card">
+          <a href="saves/agencies" class="rect-container">
+            <div
+              class="quarter-image-box"
+              *ngFor="let agency of agenciesFolder"
+            >
+              <img
+                class="quarter-image"
+                src="{{ agency?.headerImageUrl }}"
+                alt=""
+              />
+              <div class="logo-quarter-image-box">
+                <img
+                  class="logo-quarter-image"
+                  src="{{ agency?.logoImageUrl }}"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div
+              class="quarter-image-box"
+              *ngFor="let project of numSequenceOfRemaining(agenciesFolder)"
+            ></div>
+          </a>
+          <div class="saves-card-title">
+            <span>Агенції</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

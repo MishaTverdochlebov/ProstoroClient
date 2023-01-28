@@ -1,0 +1,55 @@
+<div class="project-details-window">
+  <div class="project-scroll-container">
+    <div class="agency-title-box">
+      <img src="{{project?.agencyAvatarUrl}}" alt="" />
+      <label>{{project?.agencyName}}</label>
+    </div>
+    <div class="project-content-container">
+      <div class="project-title-box">
+        <p class="project-title">{{ this.project ? this.project.name : '' }}</p>
+      </div>
+      <div #projectContentList class="content-list"></div>
+      <div class="project-content-footer">
+        <div class="like-btn" (click)="onLikeClick()">
+          <svg class="like-icon" [ngClass]="{active: project?.isLiked}">
+            <use xlink:href="assets\vectors\icons\like.svg#like"></use>
+          </svg>
+        </div>
+        <div class="agency-title">
+          <span>{{project?.agencyName}}</span>
+        </div>
+        <div class="pub-date">
+          <span>Опубліковано 11 грудня 2022 р</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-right-panel">
+      <div class="sticky-panel">
+        <div class="panel-element">
+          <img src="{{project?.agencyAvatarUrl}}" alt="" />
+        </div>
+        <div class="panel-element" (click)="onSaveClick()">
+          <div class="icon-circle">
+            <svg class="save-icon" [ngClass]="{active: project?.isSaved}">
+              <use xlink:href="assets\vectors\icons\like.svg#save"></use>
+            </svg>
+          </div>
+        </div>
+        <!-- <div class="panel-element">
+          <div class="icon-circle">
+            <svg>
+              <use xlink:href="assets\vectors\icons\like.svg#mail"></use>
+            </svg>
+          </div>
+        </div> -->
+        <div class="panel-element" (click)="onLikeClick()">
+          <div class="icon-circle">
+            <svg class="like-icon" [ngClass]="{active: project?.isLiked}">
+              <use xlink:href="assets\vectors\icons\like.svg#like"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

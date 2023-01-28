@@ -1,0 +1,75 @@
+@import "swiper/swiper.min.css";
+@import "swiper/modules/pagination/pagination.min.css";
+@import "swiper/modules/navigation/navigation.min.css";
+
+.agency-card {
+  padding: 1.6vw 0 1.6vw 1.6vw;
+  border-bottom: 0.12vw solid var(--gray-color);
+}
+
+.agency-card .button {
+  display: inline-block;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: var(--font-14-desktop);
+  font-weight: 500;
+  padding: 1vw 4vw;
+  border-radius: 0.8vw;
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+.agency-title-box {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 1.6vw;
+}
+
+.agency-title-box .agency-logo-image {
+  width: 4vw;
+  height: 4vw;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.agency-title-info {
+  margin-left: 1.6vw;
+}
+
+.agency-title-info h5 {
+  font-size: 1.6vw;
+  margin-bottom: 0.4vw;
+}
+
+.agency-title-info p {
+  font-size: var(--font-14-desktop);
+}
+
+.agency-title-info img {
+  width: 0.8vw;
+}
+
+.projects-slider {
+  margin-bottom: 1.6vw;
+}
+
+.swiper-slide {
+  width: auto;
+}
+
+.project-image {
+  margin-right: var(--space-30-desktop);
+}
+
+.project-image img {
+  border-radius: 0.5vw;
+  height: 14vw;
+  width: 18vw;
+  object-fit: cover;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: var(--accent-color);
+}

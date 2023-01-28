@@ -1,0 +1,358 @@
+@import "swiper/swiper.min.css";
+@import "swiper/modules/pagination/pagination.min.css";
+@import "swiper/modules/navigation/navigation.min.css";
+@import "swiper/modules/mousewheel/mousewheel.min.css";
+
+.agency-edit-warning{
+  position: fixed;
+  top: 5vw;
+  left: 0;
+  z-index: 50;
+  background-color: #282736;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vw;
+  width: 100%;
+  max-height: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s, max-height 0.5s, padding-top 0.5s;
+}
+
+.agency-edit-warning.active {
+  max-height: 5vw;
+  visibility: visible;
+  opacity: 1;
+}
+
+.agency-edit-warning .btn {
+  border: 0.1vw solid white;
+  background-color: transparent;
+  padding: 0.9vw var(--space-30-desktop);
+  margin-left: var(--space-70-desktop);
+}
+
+.agency-profile-main-container {
+  padding-top: 5vw;
+  height: 100%;
+  transition: padding-top 0.5s;
+}
+
+.agency-profile-main-container.warning {
+  padding-top: 10vw;
+}
+
+.page-header {
+  height: calc(100vh - 5vw);
+  max-height: calc(100vh - 5vw);
+  display: flex;
+  transition: max-height 0.5s;
+}
+
+.page-header.warning {
+  max-height: calc(100vh - 10vw);
+}
+
+.page-header .left,
+.page-header .right {
+  width: 50%;
+  position: relative;
+}
+
+.page-header .right {
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.header-image-box {
+  width: 100%;
+  height: 100%;
+}
+
+.header-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gradient {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: calc(100vh - 5vw);
+  background: linear-gradient(to right, #fff 0%, rgba(255, 255, 255, 0) 50%);
+  z-index: 20;
+}
+
+.add-header {
+  width: 100%;
+  height: 100%;
+  padding: 3vw;
+}
+
+#upload-image {
+  display: none;
+}
+
+.add-header-block {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--extra-light-gray-color);
+  border: 0.2vw dashed var(--neutral-color);
+  border-radius: var(--border-8-desktop);
+  cursor: pointer;
+}
+
+.add-header-block h1 {
+  font-size: 6.67vw;
+  color: var(--neutral-color);
+  transition: color 0.3s;
+}
+
+.add-header-block p {
+  color: var(--neutral-color);
+  transition: color 0.3s;
+}
+
+.add-header-block:hover h1 {
+  color: var(--dark-gray-color);
+}
+.add-header-block:hover p {
+  color: var(--dark-gray-color);
+}
+
+.agency-profile-main-container .agency-title {
+  padding: 10vw 5vw 0 12.5vw;
+}
+
+.agency-profile-main-container .agency-title .logo-image {
+  width: 5vw;
+  height: 5vw;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 2.4vw;
+}
+
+.agency-profile-main-container .agency-title .agency-name {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+
+  margin-bottom: 1vw;
+}
+
+.agency-profile-main-container .agency-title .agency-desc {
+  margin-bottom: 1.6vw;
+}
+
+.agency-tabs-header {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+}
+
+.agency-tab {
+  cursor: pointer;
+  padding: 1vw;
+  border-radius: 0.4vw 0.4vw 0 0;
+}
+
+.agency-tab.active {
+  background-color: var(--light-gray-color);
+}
+
+.agency-details-content {
+  min-height: calc(100vh - 5vw);
+  background-color: var(--light-gray-color);
+}
+
+.content-container {
+  padding: 0 12.5vw;
+  width: 100%;
+  max-height: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.1s, opacity 0.1s, max-height 0.1s, padding-top 0.1s;
+}
+
+.content-container.active {
+  padding-top: var(--space-40-desktop);
+  min-height: calc(100vh - 5vw);
+  max-height: fit-content;
+  visibility: visible;
+  opacity: 1;
+}
+
+.projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.projects-container::after {
+  content: "";
+  flex: auto;
+}
+
+.project-card-box {
+  width: 33.33%;
+  padding: 1vw;
+}
+
+.project-card-box:nth-of-type(3n) {
+  padding-left: 2vw;
+  padding-right: 0;
+}
+
+.project-card-box:nth-of-type(3n + 1) {
+  padding-left: 0;
+  padding-right: 2vw;
+}
+
+.add-project-block {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  background-color: var(--extra-light-gray-color);
+  border: 0.2vw dashed var(--neutral-color);
+  border-radius: var(--border-8-desktop);
+  cursor: pointer;
+}
+
+.add-project-block h1 {
+  font-size: 6.67vw;
+  color: var(--neutral-color);
+  transition: color 0.3s;
+}
+
+.add-project-block p {
+  color: var(--neutral-color);
+  transition: color 0.3s;
+}
+
+.add-project-block:hover h1 {
+  color: var(--dark-gray-color);
+}
+
+.add-project-block:hover p {
+  color: var(--dark-gray-color);
+}
+
+.about-container {
+  display: flex;
+  padding: 0 12.5vw;
+  max-height: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.1s, opacity 0.1s, max-height 0.1s, padding-top 0.1s;
+}
+
+.about-container.active {
+  padding-top: var(--space-40-desktop);
+  min-height: calc(100vh - 5vw);
+  max-height: fit-content;
+  visibility: visible;
+  opacity: 1;
+}
+
+.about-container .left {
+  width: 60%;
+  padding-right: 2vw;
+}
+
+.about-container .right {
+  width: 40%;
+}
+
+.agency-info {
+  padding-right: 2vw;
+  /* border-bottom: 1px solid gray; */
+}
+
+.agency-info h6 {
+  margin-bottom: 2vw;
+}
+
+.agency-info p {
+  margin-bottom: 2vw;
+}
+
+.agency-tags {
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-bottom: 2vw;
+}
+
+.agency-tag {
+  padding: 1vw;
+  border-radius: 0.4vw;
+  background-color: var(--gray-hover-color);
+  color: var(--dark-gray-color);
+  white-space: nowrap;
+  margin: 0.2vw;
+}
+
+.agency-stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+.agency-stats div {
+  padding: 1vw;
+}
+
+.additional-info-box {
+  padding: 2vw;
+  background-color: var(--gray-hover-color);
+  border-radius: 0.4vw;
+  /* margin-bottom: 2vw; */
+}
+
+.additional-info-p {
+  display: flex;
+  margin-bottom: 1vw;
+}
+
+.additional-info-p img {
+  width: 1.4vw;
+  height: 1.4vw;
+}
+
+.additional-info-p p {
+  margin-left: 1vw;
+}
+
+.agency-websites {
+  padding: 2vw;
+}
+
+.agency-websites * {
+  margin-bottom: 1vw;
+}
+
+/* .footer {
+  display: flex;
+  width: 100%;
+  height: 95vh;
+  background-color: var(--black-color);
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  font-size: 3vw;
+} */
+
+.btn img {
+  width: 1.2vw;
+  margin: 0 0.4vw;
+}

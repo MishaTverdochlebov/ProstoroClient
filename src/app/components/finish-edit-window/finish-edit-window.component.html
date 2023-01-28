@@ -1,0 +1,64 @@
+<div class="finish-edit-window">
+  <div class="m-bottom-20">
+    <h5>Найнеобхідніше</h5>
+  </div>
+  <div class="m-bottom-40">
+    <span
+      >Ми збираємо деяку основну інформацію про вас, необхідну для публікації
+      вашої сторінки.</span
+    >
+  </div>
+  <div class="finish-edit-check" [ngClass]="{ checked: generalInfoFilled }">
+    <div>
+      <svg>
+        <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+      </svg>
+    </div>
+    <span>Основні відомості</span>
+  </div>
+  <div class="finish-edit-check" [ngClass]="{ checked: logoFilled }">
+    <div>
+      <svg>
+        <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+      </svg>
+    </div>
+    <span>Додайте свій логотип</span>
+  </div>
+  <div class="finish-edit-check" [ngClass]="{ checked: aboutFilled }">
+    <div>
+      <svg>
+        <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+      </svg>
+    </div>
+    <span>Заповніть опис профілю</span>
+  </div>
+  <div class="finish-edit-check" [ngClass]="{ checked: tagsFilled }">
+    <div>
+      <svg>
+        <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+      </svg>
+    </div>
+    <span>Додайте від 3 категорій що описують діяльність компанії</span>
+  </div>
+  <div class="finish-edit-check" [ngClass]="{ checked: projectsFilled }">
+    <div>
+      <svg>
+        <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+      </svg>
+    </div>
+    <span>Продемонструйте свою роботу</span>
+  </div>
+  <a
+    href="{{
+      generalInfoFilled &&
+      logoFilled &&
+      aboutFilled &&
+      tagsFilled &&
+      !projectsFilled
+        ? '/pro/project/edit'
+        : '/pro/agency/edit'
+    }}"
+    class="btn btn-black"
+    >Продовжити</a
+  >
+</div>

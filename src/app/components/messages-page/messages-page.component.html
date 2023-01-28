@@ -1,0 +1,114 @@
+<app-top-panel></app-top-panel>
+
+<div class="messages-page-container">
+  <div class="dialogs-list-container">
+    <div class="dialogs-list">
+      <div
+        class="dialog-list-block"
+        *ngFor="let dialog of dialogsList"
+        (click)="selectDialog(dialog)"
+        [ngClass]="{ active: selectedDialog == dialog }"
+      >
+        <div class="d-flex">
+          <div class="contact-avatar">
+            <img
+              src="{{
+                !!dialog.contact?.avatarImgUrl
+                  ? dialog.contact?.avatarImgUrl
+                  : 'assets\\images\\User-60.png'
+              }}"
+              alt=""
+            />
+          </div>
+          <div class="dialog-list-block-right">
+            <div
+              class="d-flex justify-content-between align-items-center m-bottom-10"
+            >
+              <span class="dialog-contact-name">{{
+                dialog.contact?.name
+              }}</span>
+              <!-- <span class="dialog-message-date">{{dialog.lastMessage?.date | date}}</span> -->
+              <span class="dialog-message-date">{{
+                dialog.lastMessage?.date! | customDate
+              }}</span>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="dialog-last-message">{{
+                dialog.lastMessage?.text
+              }}</span>
+              <div class="dialog-unviewed-count-box">
+                <div class="dialog-unviewed-count" *ngIf="dialog.unviewedCount">
+                  <span>{{ dialog.unviewedCount }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dialog-container" *ngIf="selectedDialog; else dialogPlaceholder">
+    <div class="dialog-container-header">
+      <div class="contact-avatar">
+        <img
+          src="{{
+            !!selectedDialog.contact?.avatarImgUrl
+              ? selectedDialog.contact?.avatarImgUrl
+              : 'assets\\images\\User-60.png'
+          }}"
+          alt=""
+        />
+      </div>
+      <span class="dialog-contact-name m-left-10">{{selectedDialog.contact?.name}}</span>
+    </div>
+    <div class="messages-list-container">
+      <div class="messages-list">
+        <div
+          class="dated-messages-block"
+          *ngFor="let datedMessages of separatedMessages"
+        >
+          <div class="separator"></div>
+          <div class="messages-block-date">
+            <span>{{ datedMessages.date | customDate : "date" }}</span>
+          </div>
+          <div class="separator"></div>
+          <div
+            class="message-block"
+            [ngClass]="{ own: message.isCurrentUser }"
+            *ngFor="let message of datedMessages.messages"
+          >
+            <span>{{ message.text }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="send-message-container">
+      <div class="send-message-box">
+        <textarea
+          #sendMessageTextarea
+          autosize
+          [minRows]="1"
+          [maxRows]="5"
+          type="text"
+          placeholder="Message"
+        ></textarea>
+        <button
+          class="send-message-btn"
+          (click)="sendMessage()"
+          [disabled]="!sendMessageTextarea.value"
+        >
+          <svg>
+            <use xlink:href="assets\vectors\icons\like.svg#arrow-up"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <ng-template #dialogPlaceholder>
+    <div class="dialog-container" style="background-color: #f9f9fb">
+      <div class="dialog-placeholder">
+        <span>Виберіть діалог, щоб розпочати спілкування</span>
+      </div>
+    </div>
+  </ng-template>
+</div>

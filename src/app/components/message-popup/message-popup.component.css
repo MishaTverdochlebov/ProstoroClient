@@ -1,0 +1,38 @@
+.message-popup-container {
+    background-color: white;
+    padding: var(--space-30-desktop);
+    border-radius: var(--border-8-desktop);
+}
+/* 
+.message-popup-form {
+    display: flex;
+    flex-direction: column;
+} */
+
+.message-popup-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-20-desktop);
+}
+
+.message-agency-logo-img img {
+    width: var(--space-40-desktop);
+}
+
+.message-agency-title {
+    font-size: var(--font-16-desktop);
+    margin-left: var(--space-10-desktop);
+    font-weight: 500;
+}
+
+.message-popup-container textarea {
+    width: 30vw;
+    height: 10vw;
+    resize: none;
+    background-color: var(--extra-light-gray-color);
+    border: 0.12vw solid var(--neutral-color);
+    outline: none;
+    border-radius: var(--border-8-desktop);
+    padding: var(--space-15-desktop);
+    font-size: var(--font-16-desktop);
+}

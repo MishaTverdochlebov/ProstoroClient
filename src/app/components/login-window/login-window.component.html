@@ -1,0 +1,547 @@
+<div class="login-window">
+  <div class="tabs">
+    <div class="tab-body">
+      <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+        <div
+          class="content"
+          [ngClass]="{
+            active: authTab === 'login',
+            appear: authContentAppear === 'login'
+          }"
+        >
+          <div class="login-title">
+            <div class="m-bottom-10">
+              <h5 class="font-inter">Увійти в Prostoro</h5>
+            </div>
+            <div class="redirect-container m-bottom-10">
+              <span class="redirect-text">Новий користувач?</span>
+              <span
+                class="redirect-href"
+                (click)="onTabChange('register-email')"
+                >Створити аккаунт</span
+              >
+            </div>
+            <a class="redirect-pro" href="pro#signup">Авторизуватися як виконавець</a>
+          </div>
+          <div class="d-flex justify-content-center" id="googleLoginBtn"></div>
+          <div class="separator">або</div>
+          <div class="control-group m-bottom-20">
+            <label class="control-label" for="email-login"
+              >Ел. пошта або телефон</label
+            >
+            <div class="control-box">
+              <input
+                formControlName="email"
+                class="form-control gray"
+                id="email-login"
+                type="email"
+                placeholder=" "
+                required
+              />
+              <div class="validation-icon">
+                <svg class="valid-i">
+                  <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+                </svg>
+                <svg class="invalid-i">
+                  <use xlink:href="assets\vectors\icons\like.svg#invalid"></use>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div
+            class="control-group"
+            [ngClass]="
+              this.isIncorrectLoginOrPassword ? 'm-bottom-20' : 'm-bottom-40'
+            "
+          >
+            <div class="d-flex justify-content-between">
+              <label class="control-label" for="password-login">Пароль</label>
+              <label
+                class="redirect-href"
+                (click)="onTabChange('forgot-password-email')"
+                >Забули пароль?</label
+              >
+            </div>
+            <div class="control-box">
+              <input
+                formControlName="password"
+                class="form-control gray"
+                id="password-login"
+                type="password"
+                [type]="loginPasswordShow ? 'text' : 'password'"
+                placeholder=" "
+                required
+              />
+              <div
+                class="password-eye"
+                id="password-eye"
+                (click)="loginPasswordEyeToggle()"
+              >
+                <img
+                  [ngClass]="{ active: loginPasswordShow }"
+                  src="assets\vectors\eye-password-show.svg"
+                />
+                <img
+                  [ngClass]="{ active: !loginPasswordShow }"
+                  src="assets\vectors\eye-password-hide.svg"
+                />
+              </div>
+            </div>
+          </div>
+          <label
+            *ngIf="this.isIncorrectLoginOrPassword"
+            class="invalid-message m-bottom-10"
+          >
+            Неправильний логін або пароль
+          </label>
+          <button
+            [disabled]="this.loginForm.invalid"
+            class="btn btn-accent w-45"
+            type="submit"
+          >
+            Увійти
+          </button>
+        </div>
+      </form>
+
+      <!-- REGISTRATION EMAIL -->
+
+      <form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+        <div
+          class="content"
+          [ngClass]="{
+            active: authTab === 'register-email',
+            appear: authContentAppear === 'register-email'
+          }"
+        >
+          <div class="login-title">
+            <div class="m-bottom-10">
+              <h5 class="font-inter">Зареєструйтесь на Prostoro</h5>
+            </div>
+            <div class="redirect-container m-bottom-10">
+              <span class="redirect-text">Вже маєте аккаунт?</span>
+              <span class="redirect-href" (click)="onTabChange('login')"
+                >Увійти</span
+              >
+            </div>
+            <a class="redirect-pro" href="pro#signup">Авторизуватися як виконавець</a>
+          </div>
+          <div class="d-flex justify-content-center" id="googleSignupBtn"></div>
+          <div class="separator">або</div>
+          <div class="control-group m-bottom-20">
+            <label class="control-label required" for="email-register"
+              >Ел. пошта або телефон</label
+            >
+            <div class="control-box">
+              <input
+                formControlName="email"
+                class="form-control"
+                id="email-register"
+                type="email"
+                placeholder="example@mail.com"
+                (input)="registerWarning = ''"
+                required
+              />
+              <div class="validation-icon">
+                <svg class="valid-i">
+                  <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+                </svg>
+                <svg class="invalid-i">
+                  <use xlink:href="assets\vectors\icons\like.svg#invalid"></use>
+                </svg>
+              </div>
+            </div>
+            <label *ngIf="registerWarning" class="invalid-hint m-top-10">{{
+              registerWarning
+            }}</label>
+          </div>
+          <div class="m-bottom-20">
+            <span class="required"></span>
+            <label class="control-hint m-left-5">Обов’язкові поля</label>
+          </div>
+          <p class="policy-warning m-bottom-40">
+            Реєструючись, ви погоджуєтеся з умовами
+            <a href="/terms"
+              >положення про обробку і захист персональних даних</a
+            >
+            та з <a href="/terms">Умовами надання послуг Prostoro</a>
+          </p>
+          <button
+            [disabled]="this.registerForm.get('email')?.invalid"
+            class="btn btn-accent w-45"
+            (click)="onTabChange('register-email-confirm')"
+            type="button"
+          >
+            Далі
+          </button>
+        </div>
+
+        <!-- REGISTRATION CONFIRM EMAIL -->
+
+        <div
+          class="content"
+          [ngClass]="{
+            active: authTab === 'register-email-confirm',
+            appear: authContentAppear === 'register-email-confirm'
+          }"
+        >
+          <div class="login-title">
+            <div class="m-bottom-10">
+              <h5 class="font-inter">Введіть код підтвердження</h5>
+            </div>
+            <div class="redirect-container">
+              <span class="redirect-text">{{
+                "Повідомлення з кодом надіслано на пошту " +
+                  registerForm.get("email")?.value
+              }}</span>
+            </div>
+          </div>
+          <div class="control-group m-bottom-20">
+            <div class="control-box">
+              <code-input
+                [codeLength]="4"
+                (codeChanged)="confirmationCodeWarning = ''"
+                (codeCompleted)="checkConfirmCode($event, 'register-password')"
+              ></code-input>
+            </div>
+            <label
+              *ngIf="confirmationCodeWarning"
+              class="invalid-hint m-top-10"
+              >{{ confirmationCodeWarning }}</label
+            >
+          </div>
+        </div>
+
+        <!-- REGISTRATION PASSWORD -->
+
+        <div
+          class="content"
+          [ngClass]="{
+            active: authTab === 'register-password',
+            appear: authContentAppear === 'register-password'
+          }"
+        >
+          <div class="login-title">
+            <div class="m-bottom-10">
+              <h5 class="font-inter">Створіть пароль</h5>
+            </div>
+            <div class="redirect-container">
+              <span class="redirect-text">Вже маєте аккаунт?</span>
+              <span class="redirect-href" (click)="onTabChange('login')"
+                >Увійти</span
+              >
+            </div>
+          </div>
+          <div class="control-group m-bottom-20">
+            <label class="control-label required" for="password-register"
+              >Вигадайте пароль</label
+            >
+            <div class="control-box">
+              <input
+                formControlName="password"
+                class="form-control"
+                id="password-register"
+                type="password"
+                [type]="registerPasswordShow ? 'text' : 'password'"
+                placeholder=" "
+                required
+              />
+              <div
+                class="password-eye"
+                id="password-eye"
+                (click)="registerPasswordEyeToggle()"
+              >
+                <img
+                  [ngClass]="{ active: registerPasswordShow }"
+                  src="assets\vectors\eye-password-show.svg"
+                />
+                <img
+                  [ngClass]="{ active: !registerPasswordShow }"
+                  src="assets\vectors\eye-password-hide.svg"
+                />
+              </div>
+            </div>
+            <label class="control-hint m-top-10"
+              >Пароль має містити як мінімум 8 символів</label
+            >
+            <!-- <label class="invalid-hint m-top-10">Пароль має містити як мінімум 8 символів</label> -->
+          </div>
+          <div class="control-group m-bottom-20">
+            <label class="control-label required" for="passwordRepeat-register"
+              >Повторіть пароль</label
+            >
+            <div class="control-box">
+              <input
+                formControlName="passwordRepeat"
+                class="form-control"
+                id="passwordRepeat-register"
+                type="password"
+                [type]="registerPasswordShow ? 'text' : 'password'"
+                placeholder=" "
+                required
+              />
+              <div
+                class="password-eye"
+                id="password-eye"
+                (click)="registerPasswordEyeToggle()"
+              >
+                <img
+                  [ngClass]="{ active: registerPasswordShow }"
+                  src="assets\vectors\eye-password-show.svg"
+                />
+                <img
+                  [ngClass]="{ active: !registerPasswordShow }"
+                  src="assets\vectors\eye-password-hide.svg"
+                />
+              </div>
+            </div>
+            <label class="control-hint m-top-10"
+              >Пароль має містити як мінімум 8 символів</label
+            >
+          </div>
+          <div class="m-bottom-20">
+            <span class="required"></span>
+            <label class="control-hint m-left-5">Обов’язкові поля</label>
+          </div>
+          <p class="policy-warning m-bottom-40">
+            Реєструючись, ви погоджуєтеся з умовами
+            <a href="/terms"
+              >положення про обробку і захист персональних даних</a
+            >
+            та з <a href="/terms">Умовами надання послуг Prostoro</a>
+          </p>
+          <div class="d-flex justify-content-between">
+            <button
+              class="btn w-45"
+              type="button"
+              (click)="onTabChange('register-email')"
+            >
+              Назад
+            </button>
+            <button
+              [disabled]="this.registerForm.invalid"
+              class="btn btn-accent w-45"
+              type="submit"
+            >
+              Увійти
+            </button>
+          </div>
+        </div>
+        <div
+          class="content"
+          [ngClass]="{
+            active: authTab === 'register-success',
+            appear: authContentAppear === 'register-success'
+          }"
+        >
+          <div class="action-result-box">
+            <img class="action-result-image" src="assets\vectors\ok-green.svg" alt="" />
+            <p>Реєстрація успішна!</p>
+          </div>
+        </div>
+      </form>
+      <form
+        [formGroup]="forgotPasswordForm"
+        (ngSubmit)="submitChangePassword()"
+      >
+        <div
+          class="content"
+          [ngClass]="{
+            active: authTab === 'forgot-password-email',
+            appear: authContentAppear === 'forgot-password-email'
+          }"
+        >
+          <div class="login-title">
+            <div class="m-bottom-10">
+              <h5 class="font-inter">Відновлення паролю</h5>
+            </div>
+            <!-- <div class="redirect-container">
+            <span class="redirect-text">Вже маєте аккаунт?</span>
+          </div> -->
+          </div>
+          <div class="control-group m-bottom-20">
+            <label class="control-label required" for="email-register"
+              >Ел. пошта або телефон</label
+            >
+            <div class="control-box">
+              <input
+                formControlName="email"
+                class="form-control"
+                id="email-register"
+                type="email"
+                placeholder="example@mail.com"
+                (input)="registerWarning = ''"
+                required
+              />
+              <div class="validation-icon">
+                <svg class="valid-i">
+                  <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+                </svg>
+                <svg class="invalid-i">
+                  <use xlink:href="assets\vectors\icons\like.svg#invalid"></use>
+                </svg>
+              </div>
+            </div>
+            <label
+              *ngIf="passwordRecoveryWarning"
+              class="invalid-hint m-top-10"
+              >{{ passwordRecoveryWarning }}</label
+            >
+          </div>
+          <button
+            [disabled]="this.forgotPasswordForm.get('email')?.invalid"
+            class="btn btn-accent w-45"
+            (click)="onTabChange('forgot-password-confirm')"
+            type="button"
+          >
+            Далі
+          </button>
+        </div>
+        <div
+          class="content"
+          [ngClass]="{
+            active: authTab === 'forgot-password-confirm',
+            appear: authContentAppear === 'forgot-password-confirm'
+          }"
+        >
+          <div class="login-title">
+            <div class="m-bottom-10">
+              <h5 class="font-inter">Введіть код підтвердження</h5>
+            </div>
+            <div class="redirect-container">
+              <span class="redirect-text">{{
+                "Повідомлення з кодом надіслано на пошту " +
+                  forgotPasswordForm.get("email")?.value
+              }}</span>
+            </div>
+          </div>
+          <div class="control-group m-bottom-20">
+            <div class="control-box">
+              <code-input
+                [codeLength]="4"
+                (codeChanged)="confirmationCodeWarning = ''"
+                (codeCompleted)="
+                  checkConfirmCode($event, 'forgot-password-password')
+                "
+              ></code-input>
+            </div>
+            <label
+              *ngIf="confirmationCodeWarning"
+              class="invalid-hint m-top-10"
+              >{{ confirmationCodeWarning }}</label
+            >
+          </div>
+        </div>
+        <div
+          class="content"
+          [ngClass]="{
+            active: authTab === 'forgot-password-password',
+            appear: authContentAppear === 'forgot-password-password'
+          }"
+        >
+          <div class="login-title">
+            <div class="m-bottom-10">
+              <h5 class="font-inter">Вигадайте новий пароль</h5>
+            </div>
+          </div>
+          <div class="control-group m-bottom-20">
+            <label class="control-label required" for="password-register"
+              >Вигадайте пароль</label
+            >
+            <div class="control-box">
+              <input
+                formControlName="password"
+                class="form-control"
+                id="password-register"
+                type="password"
+                [type]="registerPasswordShow ? 'text' : 'password'"
+                placeholder=" "
+                required
+              />
+              <div
+                class="password-eye"
+                id="password-eye"
+                (click)="registerPasswordEyeToggle()"
+              >
+                <img
+                  [ngClass]="{ active: registerPasswordShow }"
+                  src="assets\vectors\eye-password-show.svg"
+                />
+                <img
+                  [ngClass]="{ active: !registerPasswordShow }"
+                  src="assets\vectors\eye-password-hide.svg"
+                />
+              </div>
+            </div>
+            <label class="control-hint m-top-10"
+              >Пароль має містити як мінімум 8 символів</label
+            >
+            <!-- <label class="invalid-hint m-top-10">Пароль має містити як мінімум 8 символів</label> -->
+          </div>
+          <div class="control-group m-bottom-20">
+            <label class="control-label required" for="passwordRepeat-register"
+              >Повторіть пароль</label
+            >
+            <div class="control-box">
+              <input
+                formControlName="passwordRepeat"
+                class="form-control"
+                id="passwordRepeat-register"
+                type="password"
+                [type]="registerPasswordShow ? 'text' : 'password'"
+                placeholder=" "
+                required
+              />
+              <div
+                class="password-eye"
+                id="password-eye"
+                (click)="registerPasswordEyeToggle()"
+              >
+                <img
+                  [ngClass]="{ active: registerPasswordShow }"
+                  src="assets\vectors\eye-password-show.svg"
+                />
+                <img
+                  [ngClass]="{ active: !registerPasswordShow }"
+                  src="assets\vectors\eye-password-hide.svg"
+                />
+              </div>
+            </div>
+            <label class="control-hint m-top-10"
+              >Пароль має містити як мінімум 8 символів</label
+            >
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button
+              class="btn w-45"
+              type="button"
+              (click)="onTabChange('forgot-password-email')"
+            >
+              Назад
+            </button>
+            <button
+              [disabled]="this.forgotPasswordForm.invalid"
+              class="btn btn-accent w-45"
+              type="submit"
+            >
+              Змінити
+            </button>
+          </div>
+        </div>
+        <div
+          class="content"
+          [ngClass]="{
+            active: authTab === 'forgot-password-success',
+            appear: authContentAppear === 'forgot-password-success'
+          }"
+        >
+          <div class="action-result-box">
+            <img class="action-result-image" src="assets\vectors\ok-green.svg" alt="" />
+            <p>Пароль успішно змінено</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

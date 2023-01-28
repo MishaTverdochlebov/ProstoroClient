@@ -1,0 +1,63 @@
+<app-top-panel></app-top-panel>
+
+<div class="profile-page-container">
+  <div class="profile-avatar-container">
+    <img class="m-bottom-20" src="{{!profileInfo?.imgUrl ? 'assets\\images\\User-60.png' : profileInfo?.imgUrl}}" alt="" />
+    <p class="m-bottom-20">{{profileInfo.name}}</p>
+    <a href="/profile-settings" class="btn">Налаштування</a>
+  </div>
+  <div class="profile-saves-container">
+    <h6 class="m-bottom-10">
+      {{ folderName == "projects" ? "Натхнення" : "Агенції" }}
+    </h6>
+    <div class="profile-saves-list" *ngIf="folderName == 'projects'">
+      <div class="saves-card-box" *ngFor="let project of projectsFolder">
+        <div class="saves-card" (click)="openProjectWindow('project-popup-' + project.id)">
+          <div class="rect-container">
+            <img class="rect-img" src="{{ project.imageUrl }}" alt="" />
+            <div class="remove-btn-box" (click)="removeProjectSave(project.id)">
+              <div class="remove-icon">
+                <svg>
+                  <use xlink:href="assets\vectors\icons\like.svg#remove"></use>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-popup-window id="{{ 'project-popup-' + project.id }}">
+          <app-project-details [projectId]="project.id" [toLoad]="true"></app-project-details>
+        </app-popup-window>
+      </div>
+    </div>
+    <div class="profile-saves-list" *ngIf="folderName == 'agencies'">
+      <div class="saves-card-box" *ngFor="let agency of agenciesFolder">
+        <div class="saves-card">
+          <div class="rect-container">
+            <img class="rect-img" src="{{ agency.headerImageUrl }}" alt="" />
+            <div class="rect-container-border"></div>
+            <div class="saves-agency-info-box">
+              <img
+                src="{{ agency.logoImageUrl }}"
+                alt=""
+                class="saves-agency-info-logo"
+              />
+              <div>
+                <h6 class="m-bottom-15">{{ agency.name }}</h6>
+                <span class="saves-agency-info-city">{{ agency.city }}</span>
+              </div>
+              <a href="{{'agencies/' + agency.id}}" class="btn">Переглянути профіль</a>
+            </div>
+            <div class="remove-btn-box" (click)="removeAgencySave(agency.id)">
+              <div class="remove-icon">
+                <svg>
+                  <use xlink:href="assets\vectors\icons\like.svg#remove"></use>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,142 @@
+<app-top-panel></app-top-panel>
+<div class="agency-edit-warning" [ngClass]="{ active: showFinishEditWarning }">
+  <span>{{
+    isReadyToPublish
+      ? "Ваша агенція готова до публікації"
+      : "Ваша сторінка майже готова, щоб вас знайшли замовники."
+  }}</span>
+  <button class="btn btn-black" type="button" (click)="isReadyToPublish ? publishAgency() : openWarningWindow()">
+    {{ isReadyToPublish ? "Опублікувати" : "Завершити редагування" }}
+  </button>
+  <app-popup-window id="finish-edit-popup">
+    <app-finish-edit-window [agency]="agency"></app-finish-edit-window>
+  </app-popup-window>
+</div>
+<div
+  class="agency-profile-main-container"
+  [ngClass]="{ warning: showFinishEditWarning }"
+>
+  <div class="page-header" [ngClass]="{ warning: showFinishEditWarning }">
+    <div class="left">
+      <div class="agency-title">
+        <img
+          class="logo-image"
+          src="{{ agency?.logoImgUrl }}"
+          alt=""
+          *ngIf="agency?.logoImgUrl != null; else logoDefault"
+        />
+        <ng-template #logoDefault>
+          <img class="logo-image" src="assets\images\Ellipse 11.png" alt="" />
+        </ng-template>
+        <h5 class="agency-name">{{ agency?.name }}</h5>
+        <h4 class="agency-desc">{{ agency?.about }}</h4>
+        <a href="pro/agency/edit" class="btn btn-accent w-50">
+          <img src="assets\vectors\edit-i-white.svg" alt="" />
+          Редагувати
+        </a>
+        <div class="agency-tabs-header">
+          <div
+            class="agency-tab"
+            (click)="onTabClick('portfolio')"
+            [ngClass]="{ active: selectedTab === 'portfolio' }"
+          >
+            Портфоліо
+          </div>
+          <div
+            class="agency-tab"
+            (click)="onTabClick('about')"
+            [ngClass]="{ active: selectedTab === 'about' }"
+          >
+            Про компанію
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div
+        class="header-image-box"
+        *ngIf="agency?.headerImgUrl != null; else addHeaderBlock"
+      >
+        <img class="header-image" src="{{ agency?.headerImgUrl }}" />
+        <div class="gradient"></div>
+      </div>
+      <ng-template #addHeaderBlock>
+        <div class="add-header">
+          <input
+            #imageInput
+            id="upload-image"
+            type="file"
+            accept="image/*"
+            (change)="processFile(imageInput)"
+          />
+          <label class="add-header-block" for="upload-image">
+            <h1>+</h1>
+            <p>Додати банер</p>
+          </label>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <div class="agency-details-content">
+    <div
+      class="content-container"
+      [ngClass]="{ active: selectedTab == 'portfolio' }"
+    >
+      <div class="projects-container">
+        <div class="project-card-box">
+          <a href="pro/project/edit" class="add-project-block">
+            <h1>+</h1>
+            <p>Додати проєкт</p>
+          </a>
+        </div>
+        <div class="project-card-box" *ngFor="let project of agency?.projects">
+          <app-project-card [project]="project"></app-project-card>
+        </div>
+      </div>
+    </div>
+    <div class="about-container" [ngClass]="{ active: selectedTab == 'about' }">
+      <div class="left">
+        <div class="agency-info">
+          <h6>Біографія</h6>
+          <p>
+            {{ agency?.description }}
+          </p>
+          <div class="agency-tags">
+            <div class="agency-tag" *ngFor="let tag of agency?.tags">
+              {{ tag }}
+            </div>
+          </div>
+        </div>
+        <!-- <div class="agency-stats">
+          <div>{{ agency?.followersCount }} Підписників</div>
+          <div>{{ agency?.likesCount }} Вподобань</div>
+          <div>{{ agency?.savesCount }} Збережень</div>
+        </div> -->
+      </div>
+      <div class="right">
+        <div class="additional-info-box">
+          <div class="additional-info-p">
+            <img src="assets\vectors\location-i.svg" alt="" />
+            <p>{{ agency?.city?.ua }}</p>
+          </div>
+          <div class="additional-info-p">
+            <img src="assets\vectors\participant-i.svg" alt="" />
+            <p>Учасник з 2022 року</p>
+          </div>
+          <div class="additional-info-p">
+            <img src="assets\vectors\verification-i.svg" alt="" />
+            <p>Перевірку пройдено</p>
+          </div>
+        </div>
+        <div class="agency-websites">
+          <h6>Соцмережі</h6>
+          <p>greenhouse.com</p>
+          <p>Instagram</p>
+          <p>Twitter</p>
+          <p>Facebook</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

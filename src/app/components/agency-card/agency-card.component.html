@@ -1,0 +1,28 @@
+<div class="agency-card">
+  <div class="agency-title-box">
+    <img class="agency-logo-image" src="{{ agency.logoImgUrl }}" />
+    <div class="agency-title-info">
+      <h5>{{ agency.name }}</h5>
+      <p>
+        {{ agency.city.ua }} | {{ agency.budget }} | {{ agency.rate | number: '1.1-1' }}
+        <img src="assets\images\rate-i.png" alt="" />
+      </p>
+    </div>
+  </div>
+  <div class="projects-slider">
+    <swiper
+      #images
+      [slidesPerView]="'auto'"
+      [slidesPerGroup]="2"
+      [navigation]="true"
+    >
+      <ng-template swiperSlide
+      *ngFor="let project of projects">
+        <div class="project-image">
+          <img src="{{ project.imgUrl }}" alt="" />
+        </div>
+      </ng-template>
+    </swiper>
+  </div>
+  <a href="agencies/{{agency.id}}" class="button">дивитись сторінку</a>
+</div>

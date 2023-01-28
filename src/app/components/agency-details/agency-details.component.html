@@ -1,0 +1,210 @@
+<app-top-panel></app-top-panel>
+
+<div class="main-container">
+  <div class="page-header">
+    <div class="left">
+      <div class="agency-page-title">
+        <img class="logo-image" src="{{ agency?.logoImgUrl }}" alt="" />
+        <h5 class="agency-name">{{ agency?.name }}</h5>
+        <h4 class="agency-desc">{{ agency?.about }}</h4>
+        <div class="d-flex">
+          <button class="btn" (click)="onSaveClick()">
+            <img
+              class="small m-right-10"
+              src="{{
+                agency?.isSaved
+                  ? 'assets\\vectors\\save-checked.svg'
+                  : 'assets\\vectors\\save-plus.svg'
+              }}"
+              alt=""
+            />
+            {{ agency?.isSaved ? "Збережено" : "Зберегти" }}
+          </button>
+          <button
+            class="btn btn-accent m-left-30"
+            (click)="openMessageWindow()"
+          >
+            <img
+              class="m-right-10"
+              src="assets\vectors\messages-white-i.svg"
+              alt=""
+            />
+            Написати
+          </button>
+        </div>
+        <div class="agency-tabs-header">
+          <div
+            class="agency-tab"
+            (click)="onTabClick('portfolio')"
+            [ngClass]="{ active: selectedTab === 'portfolio' }"
+          >
+            Портфоліо
+          </div>
+          <div
+            class="agency-tab"
+            (click)="onTabClick('about')"
+            [ngClass]="{ active: selectedTab === 'about' }"
+          >
+            Про компанію
+          </div>
+          <div
+            class="agency-tab"
+            (click)="onTabClick('reviews')"
+            [ngClass]="{ active: selectedTab === 'reviews' }"
+          >
+            Відгуки
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <img class="header-image" src="{{ agency?.headerImgUrl }}" />
+      <div class="gradient"></div>
+    </div>
+  </div>
+  <div class="agency-details-content">
+    <div
+      class="content-container"
+      [ngClass]="{ active: selectedTab == 'portfolio' }"
+    >
+      <div class="projects-container">
+        <div class="project-card-box" *ngFor="let project of agency?.projects">
+          <app-project-card
+            [project]="project"
+            [displayButtons]="true"
+          ></app-project-card>
+        </div>
+      </div>
+    </div>
+    <div class="about-container" [ngClass]="{ active: selectedTab == 'about' }">
+      <div class="left">
+        <div class="agency-info">
+          <h6>Біографія</h6>
+          <p>
+            {{ agency?.description }}
+          </p>
+          <div class="agency-tags">
+            <div class="agency-tag" *ngFor="let tag of agency?.tags">
+              {{ tag.ua }}
+            </div>
+          </div>
+        </div>
+        <!-- <div class="agency-stats">
+          <div>{{ agency?.followersCount }} Підписників</div>
+          <div>{{ agency?.likesCount }} Вподобань</div>
+          <div>{{ agency?.savesCount }} Збережень</div>
+        </div> -->
+      </div>
+      <div class="right">
+        <div class="additional-info-box">
+          <div class="additional-info-p">
+            <img src="assets\vectors\location-i.svg" alt="" />
+            <p>{{ agency?.city?.ua }}</p>
+          </div>
+          <div class="additional-info-p">
+            <img src="assets\vectors\participant-i.svg" alt="" />
+            <p>Учасник з 2022 року</p>
+          </div>
+          <div class="additional-info-p">
+            <img src="assets\vectors\verification-i.svg" alt="" />
+            <p>Перевірку пройдено</p>
+          </div>
+        </div>
+        <div class="agency-websites">
+          <h6>Соцмережі</h6>
+          <p>greenhouse.com</p>
+          <p>Instagram</p>
+          <p>Twitter</p>
+          <p>Facebook</p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="review-container"
+      [ngClass]="{ active: selectedTab == 'reviews' }"
+    >
+      <div class="review-form">
+        <div class="review-title">
+          <img src="assets\images\User-60.png" alt="" />
+          <strong>Ви</strong>
+        </div>
+        <div class="rate">
+          <div
+            *ngFor="let n of numSequence(5); let i = index"
+            class="rate-star"
+            [ngClass]="{ active: rate > i }"
+            (click)="onStarClick(i + 1)"
+          >
+            <svg>
+              <use xlink:href="assets\vectors\icons\like.svg#star"></use>
+            </svg>
+          </div>
+        </div>
+        <textarea
+          [(ngModel)]="reviewMessage"
+          class="review-textarea"
+          placeholder="Написати коментар..."
+        ></textarea>
+        <button class="btn btn-black" (click)="onReviewSubmit()">
+          Опублікувати
+        </button>
+      </div>
+      <div class="right-column" *ngIf="!!agency?.reviews?.length">
+        <div class="overall-rating-box">
+          <h2>{{ agency?.rate }}</h2>
+          <div class="rate">
+            <div
+              *ngFor="let n of numSequence(5); let i = index"
+              class="rating-star"
+            >
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#star"></use>
+              </svg>
+            </div>
+          </div>
+          <p>Відгуків: {{ agency?.reviews?.length }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-list">
+      <app-review-card
+        *ngFor="let review of agency?.reviews"
+        [review]="review"
+      ></app-review-card>
+    </div>
+    <div #messageBox class="message-box">
+      <div class="message-box-relative">
+        <div class="circle"></div>
+        <div class="circle-image">
+          <img src="assets\images\Ellipse 9.png" alt="" />
+        </div>
+        <div class="rectangle">
+          <div class="available-p">
+            <img src="assets\images\Ellipse 9.png" alt="" />
+            <p>Доступний зараз</p>
+          </div>
+          <button class="btn btn-accent" (click)="openMessageWindow()">
+            <img
+              class="m-right-10"
+              src="assets\vectors\messages-white-i.svg"
+              alt=""
+            />
+            Написати
+          </button>
+        </div>
+        <div class="message-box-close" (click)="hideMessageBox()">
+          <img src="assets\vectors\close-icon-2.svg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <app-popup-window id="message-window">
+      <app-message-popup
+        [recipientId]="agency?.userId"
+        [recipientImgUrl]="agency?.logoImgUrl"
+        [recipientName]="agency?.name"
+      ></app-message-popup>
+    </app-popup-window>
+  </div>
+  <app-footer></app-footer>
+</div>

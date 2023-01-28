@@ -1,0 +1,367 @@
+<app-top-panel></app-top-panel>
+<form class="d-flex" [formGroup]="agencyForm" (ngSubmit)="submitSave()">
+  <div class="save-panel-fixed">
+    <div class="save-panel-body">
+      <a href="/pro/agency" class="btn btn-black">Назад</a>
+      <button id="save-btn" class="btn btn-accent" type="submit">
+        Зберегти зміни
+      </button>
+    </div>
+  </div>
+  <div class="agency-edit-left-panel">
+    <div id="agency-edit-navbar" class="agency-edit-nav-box">
+      <a href="#agency-edit-main-block" class="agency-edit-nav-link active"
+        >Основна інформація</a
+      >
+      <!-- <a href="#agency-edit-verification-block" class="agency-edit-nav-link"
+        >Верифікація профіля</a
+      > -->
+      <a href="#agency-edit-about-block" class="agency-edit-nav-link"
+        >Про компанію</a
+      >
+      <a href="#agency-edit-activity-block" class="agency-edit-nav-link"
+        >Вид діяльності</a
+      >
+      <!-- <a href="#agency-edit-links-block" class="agency-edit-nav-link"
+        >Посилання</a
+      > -->
+    </div>
+  </div>
+  <div class="agency-edit-container">
+    <div id="agency-edit-main-block" class="agency-edit-block">
+      <div class="block-title">
+        <span>Основна інформація</span>
+      </div>
+      <div class="d-flex">
+        <div class="update-img-block">
+          <input
+            #imageInput
+            id="upload-image"
+            type="file"
+            accept="image/*"
+            (change)="processFile(imageInput)"
+          />
+          <div
+            class="profile-image"
+            *ngIf="agency?.logoImgUrl; else defaultLogo"
+          >
+            <img src="{{ agency?.logoImgUrl }}" alt="" />
+          </div>
+          <ng-template #defaultLogo>
+            <div class="profile-image">
+              <img src="assets\images\Ellipse 11.png" alt="" />
+            </div>
+          </ng-template>
+          <label class="update-image-btn" for="upload-image">
+            <span>Оновити фото</span>
+          </label>
+        </div>
+        <div class="w-100">
+          <div class="control-group m-bottom-20">
+            <label class="control-label required" for="agency-name"
+              >Назва компанії</label
+            >
+            <div class="control-box">
+              <input
+                formControlName="agencyName"
+                class="form-control"
+                id="agency-name"
+                placeholder=" "
+                required
+              />
+              <div class="validation-icon"></div>
+            </div>
+          </div>
+          <div class="control-group m-bottom-20">
+            <label class="control-label" for="contact-name"
+              >Контактна особа</label
+            >
+            <div class="d-flex">
+              <div class="control-box w-50">
+                <input
+                  formControlName="contactName"
+                  class="form-control"
+                  id="contact-name"
+                  placeholder="Ім’я"
+                  required
+                />
+                <div class="validation-icon"></div>
+              </div>
+              <div class="control-box w-50 m-left-10">
+                <input
+                  formControlName="contactLastname"
+                  class="form-control"
+                  id="contact-lastname"
+                  placeholder="Прізвище"
+                  required
+                />
+                <div class="validation-icon"></div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex m-bottom-20">
+            <div class="control-group w-50">
+              <label class="control-label required" for="agency-email"
+                >Ел. пошта</label
+              >
+              <div class="control-box">
+                <input
+                  formControlName="email"
+                  class="form-control"
+                  id="agency-email"
+                  placeholder=" "
+                  required
+                />
+                <div class="validation-icon"></div>
+              </div>
+            </div>
+            <div class="control-group w-50 m-left-10">
+              <label class="control-label" for="phone-number"
+                >Номер телефону</label
+              >
+              <div class="d-flex">
+                <div class="control-box">
+                  <input
+                    id="number-template"
+                    class="form-control"
+                    value="+380"
+                    disabled
+                  />
+                  <div class="validation-icon"></div>
+                </div>
+                <div class="control-box m-left-10">
+                  <input
+                    formControlName="phoneNumber"
+                    class="form-control"
+                    id="phone-number"
+                    placeholder=" "
+                    required
+                  />
+                  <div class="validation-icon"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="agency-city">Місто</label>
+            <div class="d-flex">
+              <div class="control-box w-50">
+                <input
+                  formControlName="city"
+                  class="form-control"
+                  id="agency-city"
+                  placeholder="Введіть назву міста"
+                  (input)="filterCities()"
+                />
+                <div class="dropdown-options-list">
+                  <div
+                    class="dropdown-option"
+                    (click)="selectCity(city)"
+                    *ngFor="let city of filteredCities"
+                  >
+                    <span>{{ city.ua }}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="w-50 m-left-10"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div id="agency-edit-verification-block" class="agency-edit-block">
+      <div class="block-title">
+        <span>Верифікація профіля</span>
+      </div>
+      <div class="d-flex align-items-center m-bottom-20">
+        <div class="control-group w-40">
+          <div class="d-flex">
+            <div class="control-box">
+              <input
+                id="number-template"
+                class="form-control"
+                value="+380"
+                disabled
+              />
+            </div>
+            <div class="control-box w-100 m-left-10">
+              <input
+                class="form-control"
+                placeholder=" "
+                [value]="agency?.phoneNumber"
+                disabled
+              />
+              <div class="validation-icon"></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-black m-left-30">Підтвердити</button>
+      </div>
+      <div class="d-flex align-items-center">
+        <div class="control-group w-40 m-bottom-0">
+          <div class="d-flex">
+            <div class="control-box w-100">
+              <input
+                class="form-control"
+                placeholder=" "
+                [value]="agency?.email"
+                disabled
+              />
+              <div class="validation-icon"></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-black m-left-30">Підтвердити</button>
+      </div>
+    </div> -->
+
+    <div id="agency-edit-about-block" class="agency-edit-block">
+      <div class="block-title">
+        <span>Про компанію</span>
+      </div>
+      <div class="control-group m-bottom-20">
+        <label class="control-label" for="agency-about">Заголовок</label>
+        <div class="control-box">
+          <input
+            formControlName="about"
+            class="form-control"
+            id="agency-about"
+            placeholder="Про нас"
+            required
+          />
+          <div class="validation-icon"></div>
+        </div>
+      </div>
+      <div class="control-group m-bottom-20">
+        <label class="control-label" for="agency-description">Опис</label>
+        <div class="control-box">
+          <textarea
+            style="overflow-y: auto"
+            formControlName="description"
+            class="form-control"
+            id="agency-description"
+            placeholder=" "
+          ></textarea>
+          <div class="validation-icon"></div>
+        </div>
+      </div>
+      <div class="control-group m-bottom-20">
+        <label class="control-label">Чи виконуєте замовлення віддалено?</label>
+        <div class="control-box m-bottom-10">
+          <label class="checkbox-container"
+            >Віддалена співпраця
+            <input type="checkbox" formControlName="remote" />
+            <span class="checkmark">
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+              </svg>
+            </span>
+          </label>
+        </div>
+        <div class="control-box m-bottom-20">
+          <label class="checkbox-container"
+            >На місці
+            <input type="checkbox" formControlName="onSite" />
+            <span class="checkmark">
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+              </svg>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="control-group m-bottom-20">
+        <label class="control-label" for="agency-description"
+          >Встановіть середній бюджет проєкту</label
+        >
+        <div class="control-box">
+          <select
+            formControlName="budget"
+            class="input-select"
+            name="budget"
+            id="budget"
+          >
+            <option [defaultSelected]="true" value="">Бюджет:</option>
+            <option value="$">$ < 15 000</option>
+            <option value="$$">$$ < 25 000</option>
+            <option value="$$$">$$$ < 40 000</option>
+            <option value="$$$$">$$$$ > 40 000</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="agency-edit-activity-block" class="agency-edit-block">
+      <div class="block-title">
+        <span>Вид діяльності</span>
+      </div>
+      <div class="control-group m-bottom-20">
+        <label class="control-label" for="tags-select"
+          >Виберіть стиль, що описує вашу роботу (до 10)</label
+        >
+        <div class="control-box">
+          <input
+            formControlName="tag"
+            class="form-control"
+            id="tags-select"
+            placeholder="Наприклад: мінімалізм"
+            (input)="filterTags('style')"
+            [disabled]="selectedStyleTags.length >= 10"
+          />
+          <div class="dropdown-options-list">
+            <div
+              class="dropdown-option"
+              (click)="addTag(tag)"
+              *ngFor="let tag of filteredStyleTags"
+            >
+              <span>{{ tag.value }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tags-list">
+        <div class="tag-block" *ngFor="let tag of selectedStyleTags">
+          <span>{{ tag.value }}</span>
+          <div class="tag-close" (click)="removeTag(tag)">
+            <svg>
+              <use xlink:href="assets\vectors\icons\like.svg#close"></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div id="agency-edit-links-block" class="agency-edit-block">
+      <div class="block-title">
+        <span>Посилання</span>
+      </div>
+      <div class="agency-links-list">
+        <div class="agency-link-block">
+          <div class="d-flex align-items-center">
+            <div class="agency-link-logo">
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#google"></use>
+              </svg>
+            </div>
+            <span class="m-left-10">Сайт компанії</span>
+          </div>
+          <div>Додати посилання</div>
+        </div>
+        <div class="agency-link-block">
+          <div class="d-flex align-items-center">
+            <div class="agency-link-logo">
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#google"></use>
+              </svg>
+            </div>
+            <span class="m-left-10">Instagram</span>
+          </div>
+          <div>Додати посилання</div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</form>
+
+<app-footer></app-footer>

@@ -1,0 +1,101 @@
+
+@import "swiper/swiper.min.css";
+@import "swiper/modules/pagination/pagination.min.css";
+@import "swiper/modules/navigation/navigation.min.css";
+@import "swiper/modules/mousewheel/mousewheel.min.css";
+
+.page {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.swiper-pagination-vertical.swiper-pagination-bullets,
+.swiper-vertical > .swiper-pagination-bullets {
+  left: 2vw;
+  right: initial;
+}
+
+.swiper-pagination-vertical.swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-vertical > .swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 4vh 0 !important;
+  border: 2px solid white !important;
+  width: var(
+    --swiper-pagination-bullet-width,
+    /* var(--swiper-pagination-bullet-size, 0.8vw) */
+      var(--swiper-pagination-bullet-size, 12px)
+  );
+  height: var(
+    --swiper-pagination-bullet-height,
+    /* var(--swiper-pagination-bullet-size, 0.8vw) */
+      var(--swiper-pagination-bullet-size, 12px)
+  );
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--accent-color);
+}
+
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 0;
+}
+
+/* --------------------------------------------------MAIN-------------------------------------------------- */
+
+.section {
+  display: grid;
+  height: 100vh;
+  scroll-snap-align: start;
+  padding: 5vw 12.5vw 1vw 12.5vw;
+
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.info-container h3 {
+  margin-bottom: 0.694vw;
+}
+
+.info-container p {
+  font-size: 1.11vw;
+  font-weight: 400;
+  margin-bottom: 1.388vw;
+
+  text-align: justify;
+}
+
+/* ------------------------------------------------HOME-SECTION------------------------------------------------ */
+
+#home-section {
+  grid-template-rows: 1fr;
+}
+
+.home-image {
+  grid-column: 1 / 7;
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-image img {
+  width: 100%
+}
+
+#home-section .info-container {
+  grid-column: 8 / 13;
+}

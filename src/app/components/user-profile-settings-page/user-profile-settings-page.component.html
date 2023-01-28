@@ -1,0 +1,317 @@
+<app-top-panel></app-top-panel>
+<form class="d-flex" [formGroup]="profileForm" (ngSubmit)="submitSave()">
+  <div class="save-panel-fixed">
+    <div class="save-panel-body">
+      <a href="/profile" class="btn btn-black">Назад</a>
+      <button id="save-btn" class="btn btn-accent" type="submit">
+        Зберегти зміни
+      </button>
+    </div>
+  </div>
+  <div class="agency-edit-left-panel">
+    <div id="agency-edit-navbar" class="agency-edit-nav-box">
+      <a href="#agency-edit-main-block" class="agency-edit-nav-link active"
+        >Основна інформація</a
+      >
+      <!-- <a href="#agency-edit-verification-block" class="agency-edit-nav-link"
+        >Верифікація профіля</a
+      > -->
+      <!-- <a href="#agency-edit-password-block" class="agency-edit-nav-link"
+        >Пароль</a
+      > -->
+      <a href="#agency-edit-notifications-block" class="agency-edit-nav-link"
+        >Сповіщення</a
+      >
+      <a href="#agency-edit-delete-block" class="agency-edit-nav-link"
+        >Видалити аккаунт</a
+      >
+    </div>
+  </div>
+  <div class="agency-edit-container">
+    <div id="agency-edit-main-block" class="agency-edit-block">
+      <div class="block-title">
+        <span>Основна інформація</span>
+      </div>
+      <div class="d-flex">
+        <div class="update-img-block">
+          <input
+            #imageInput
+            id="upload-image"
+            type="file"
+            accept="image/*"
+            (change)="processFile(imageInput)"
+          />
+          <div
+            class="profile-image"
+            *ngIf="profile?.imgUrl; else defaultLogo"
+          >
+            <img src="{{ profile?.imgUrl }}" alt="" />
+          </div>
+          <ng-template #defaultLogo>
+            <div class="profile-image">
+              <img src="assets\images\Ellipse 11.png" alt="" />
+            </div>
+          </ng-template>
+          <label class="update-image-btn" for="upload-image">
+            <span>Оновити фото</span>
+          </label>
+        </div>
+        <div class="w-100">
+          <div class="d-flex m-bottom-20">
+            <div class="control-group w-50">
+              <label class="control-label required" for="profile-name"
+                >Ім’я</label
+              >
+              <div class="control-box">
+                <input
+                  formControlName="name"
+                  class="form-control"
+                  id="profile-name"
+                  placeholder=" "
+                  required
+                />
+                <div class="validation-icon"></div>
+              </div>
+            </div>
+            <div class="control-group w-50 m-left-10">
+              <label class="control-label" for="profile-lastname"
+                >Прізвище</label
+              >
+              <div class="control-box">
+                <input
+                  formControlName="lastname"
+                  class="form-control"
+                  id="profile-lastname"
+                  placeholder=" "
+                />
+                <div class="validation-icon"></div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex m-bottom-20">
+            <div class="control-group w-50">
+              <label class="control-label required" for="agency-email"
+                >Ел. пошта</label
+              >
+              <div class="control-box">
+                <input
+                  formControlName="email"
+                  class="form-control"
+                  id="agency-email"
+                  placeholder=" "
+                  required
+                />
+                <div class="validation-icon"></div>
+              </div>
+            </div>
+            <div class="control-group w-50 m-left-10">
+              <label class="control-label" for="profile-phone-number"
+                >Номер телефону</label
+              >
+              <div class="d-flex">
+                <div class="control-box">
+                  <input
+                    id="number-template"
+                    class="form-control"
+                    value="+380"
+                    disabled
+                  />
+                  <div class="validation-icon"></div>
+                </div>
+                <div class="control-box m-left-10">
+                  <input
+                    formControlName="phone"
+                    class="form-control"
+                    id="profile-phone-number"
+                    placeholder=" "
+                    required
+                  />
+                  <div class="validation-icon"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div id="agency-edit-verification-block" class="agency-edit-block">
+      <div class="block-title">
+        <span>Верифікація профіля</span>
+      </div>
+      <div class="d-flex align-items-center m-bottom-20">
+        <div class="control-group w-40">
+          <div class="d-flex">
+            <div class="control-box">
+              <input
+                id="number-template"
+                class="form-control"
+                value="+380"
+                disabled
+              />
+            </div>
+            <div class="control-box w-100 m-left-10">
+              <input
+                class="form-control"
+                placeholder=" "
+                [value]="profile?.phoneNumber"
+                disabled
+              />
+              <div class="validation-icon"></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-black m-left-30">Підтвердити</button>
+      </div>
+      <div class="d-flex align-items-center">
+        <div class="control-group w-40 m-bottom-0">
+          <div class="d-flex">
+            <div class="control-box w-100">
+              <input
+                class="form-control"
+                placeholder=" "
+                [value]="profile?.email"
+                disabled
+              />
+              <div class="validation-icon"></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-black m-left-30">Підтвердити</button>
+      </div>
+    </div> -->
+
+    <!-- <div id="agency-edit-password-block" class="agency-edit-block">
+      <div class="block-title">
+        <span>Пароль</span>
+      </div>
+      <div class="control-group m-bottom-20">
+        <label class="control-label" for="agency-name">Старий пароль</label>
+        <div class="control-box">
+          <input
+            formControlName="agencyName"
+            class="form-control"
+            id="agency-name"
+            placeholder=" "
+            [value]="profile?.name"
+            required
+          />
+          <div class="validation-icon"></div>
+        </div>
+      </div>
+      <div class="control-group m-bottom-20">
+        <label class="control-label" for="agency-name">Новий пароль</label>
+        <div class="control-box">
+          <input
+            formControlName="agencyName"
+            class="form-control"
+            id="agency-name"
+            placeholder=" "
+            [value]="profile?.name"
+            required
+          />
+          <div class="validation-icon"></div>
+        </div>
+      </div>
+      <button class="btn btn-black">Змінити</button>
+    </div> -->
+
+    <div id="agency-edit-notifications-block" class="agency-edit-block">
+      <div class="block-title">
+        <span>Сповіщення</span>
+      </div>
+      <div class="control-group m-bottom-20">
+        <div class="control-box">
+          <label class="switch-control">
+            <input formControlName="notificationsEmail" id="email-notifications-switch" type="checkbox" />
+            <span class="switch-slider"></span>
+          </label>
+          <label
+            class="control-label m-left-10 m-bottom-0"
+            for="email-notifications-switch"
+            >Надсилати мені сповіщення на ел. пошту</label
+          >
+        </div>
+      </div>
+      <div class="control-group m-bottom-20">
+        <div class="control-box">
+          <label class="switch-control">
+            <input formControlName="notificationsDesktop" id="desktop-notifications-switch" type="checkbox" />
+            <span class="switch-slider"></span>
+          </label>
+          <label
+            class="control-label m-left-10 m-bottom-0"
+            for="desktop-notifications-switch"
+            >Дозволити сповіщення на робочий стіл</label
+          >
+        </div>
+      </div>
+      <div class="block-title">
+        <span>Сповістіть мене коли:</span>
+      </div>
+      <div class="control-group">
+        <div class="control-box m-bottom-20">
+          <label class="checkbox-container"
+            >Вхідне пряме повідомлення
+            <input formControlName="notificationsDirectMessages" type="checkbox" checked="checked" />
+            <span class="checkmark">
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+              </svg>
+            </span>
+          </label>
+        </div>
+        <div class="control-box m-bottom-20">
+          <label class="checkbox-container"
+            >Активність в профілі
+            <input formControlName="notificationsActivity" type="checkbox" checked="checked" />
+            <span class="checkmark">
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+              </svg>
+            </span>
+          </label>
+        </div>
+        <div class="control-box m-bottom-20">
+          <label class="checkbox-container"
+            >Оновлення продукту Prostoro
+            <input formControlName="notificationsUpdates" type="checkbox" checked="checked" />
+            <span class="checkmark">
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+              </svg>
+            </span>
+          </label>
+        </div>
+        <div class="control-box">
+          <label class="checkbox-container"
+            >Оголошення та спеціальні пропозиції
+            <input formControlName="notificationsSpecials" type="checkbox" checked="checked" />
+            <span class="checkmark">
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+              </svg>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div id="agency-edit-delete-block" class="agency-edit-block">
+      <div class="block-title">
+        <span>Видалити аккаунт</span>
+      </div>
+      <p>
+        Бажаєте видали свій обліковий запис на Prostoro? <br /><br />
+        Видалення облікового запису призведе до видалення всього вашого вмісту
+        та пов’язаних із ним даних.
+      </p>
+      <br /><br />
+      <div class="delete-account-btn" (click)="deleteAccount()">
+        <span>Я хочу видалити свій акаунт</span>
+      </div>
+    </div>
+  </div>
+</form>
+
+<app-footer></app-footer>

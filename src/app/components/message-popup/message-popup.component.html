@@ -1,0 +1,30 @@
+<div class="message-popup-container">
+  <form
+    class="message-popup-form"
+    [formGroup]="messageForm"
+    (ngSubmit)="sendMessage()"
+  >
+    <div class="message-popup-title">
+      <div class="message-agency-logo-img">
+        <img src="assets\images\Ellipse 9.png" alt="" />
+      </div>
+      <span class="message-agency-title">Green House</span>
+    </div>
+    <textarea
+      formControlName="message"
+      placeholder="Написати відповідь..."
+      spellcheck="false"
+      class="m-bottom-30"
+    ></textarea>
+    <div class="d-flex justify-content-end">
+      <button class="btn">Скасувати</button>
+      <button
+        class="btn btn-accent m-left-30"
+        type="submit"
+        [disabled]="this.messageForm.invalid"
+      >
+        Надіслати
+      </button>
+    </div>
+  </form>
+</div>

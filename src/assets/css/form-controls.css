@@ -1,0 +1,401 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--gray-color);
+  color: var(--black-color);
+  text-align: center;
+  font-size: var(--font-14-desktop);
+  font-weight: 500;
+  min-width: 7vw;
+  height: fit-content;
+  padding: 0.9vw 1.2vw;
+  border-radius: var(--border-8-desktop);
+  line-height: 1;
+  transition: background-color 0.1s;
+}
+
+.btn:hover {
+  background-color: var(--gray-hover-color);
+}
+/* TODO: add classes small-btn, long-btn etc */
+/* TODO: add styles for clicked button */
+
+.btn svg {
+  width: var(--space-20-desktop);
+  height: var(--space-20-desktop);
+  margin: 0 var(--space-10-desktop);
+}
+
+.btn-black {
+  background-color: var(--black-color);
+  color: var(--white-color);
+}
+
+.btn-black:hover {
+  background-color: var(--black-hover-color);
+}
+
+.btn-accent {
+  background-color: var(--accent-color);
+  color: var(--white-color);
+}
+
+.btn:disabled {
+  background-color: var(--neutral-color);
+  color: var(--dark-neutral-color);
+}
+
+.btn:disabled:hover {
+  cursor: default;
+  background-color: var(--neutral-color);
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-hover-color);
+}
+
+.required:after {
+  content: " *";
+  font-weight: 500;
+  color: red;
+}
+
+/* ---------------------------------------INPUTS-------------------------------------------------- */
+
+.control-label {
+  display: inline-block;
+  color: var(--dark-gray-color);
+  font-size: var(--font-14-desktop);
+  font-weight: 500;
+  margin-bottom: var(--space-10-desktop);
+}
+
+.control-box {
+  position: relative;
+}
+
+.form-control {
+  border: 0.1vw solid var(--neutral-color);
+  border-radius: var(--border-8-desktop);
+  overflow: hidden;
+  padding: var(--space-15-desktop) var(--space-40-desktop)
+    var(--space-15-desktop) var(--space-10-desktop);
+  width: 100%;
+  font-size: var(--font-16-desktop);
+  /* font-weight: 300; */
+  transition: box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.form-control.gray {
+  background-color: var(--extra-light-gray-color);
+}
+
+.validation-icon {
+  position: absolute;
+  top: 0;
+  right: var(--space-10-desktop);
+  width: var(--space-20-desktop);
+  height: var(--space-20-desktop);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.validation-icon svg {
+  width: var(--space-20-desktop);
+  height: var(--space-20-desktop);
+  display: none;
+}
+
+.form-control:focus {
+  outline: none !important;
+  box-shadow: rgba(255, 104, 10, 20%) 0 0 0 0.2vw;
+  background-color: transparent;
+}
+
+.form-control:not(:focus):not(:placeholder-shown):invalid {
+  border-color: var(--red-color);
+}
+
+.form-control:not(:focus):not(:placeholder-shown) ~ .validation-icon {
+  top: var(--space-15-desktop);
+  opacity: 1;
+}
+
+.form-control:not(:focus):not(:placeholder-shown):invalid
+  ~ .validation-icon
+  svg.invalid-i {
+  display: block;
+  fill: var(--red-color);
+}
+
+.form-control:not(:focus):not(:placeholder-shown):valid {
+  border-color: var(--green-color);
+}
+
+.form-control:not(:focus):not(:placeholder-shown):valid
+  ~ .validation-icon
+  svg.valid-i {
+  display: block;
+  fill: var(--green-color);
+}
+
+.control-hint {
+  display: inline-block;
+  color: var(--dark-neutral-color);
+  font-size: var(--font-14-desktop);
+  font-weight: 500;
+}
+
+.invalid-hint {
+  display: inline-flex;
+  width: 100%;
+  justify-content: flex-end;
+  color: var(--red-color);
+  font-size: var(--font-14-desktop);
+  font-weight: 500;
+}
+
+.invalid-message {
+  display: inline-block;
+  color: var(--red-color);
+  font-size: var(--font-14-desktop);
+  font-weight: 500;
+}
+
+.password-eye {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: var(--space-10-desktop);
+  width: var(--space-20-desktop);
+  height: var(--space-20-desktop);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.1s;
+}
+
+.password-eye img {
+  display: none;
+  width: var(--space-20-desktop);
+  height: var(--space-20-desktop);
+}
+
+.password-eye img.active {
+  display: block;
+}
+
+.form-control:not(:placeholder-shown) ~ .password-eye {
+  opacity: 1;
+  visibility: visible;
+  top: var(--space-15-desktop);
+}
+
+/* ----------------------------------------SWITCH---------------------------------------------- */
+
+/* The switch - the box around the slider */
+.switch-control {
+  position: relative;
+  display: inline-block;
+  width: 2vw;
+  height: 1.2vw;
+}
+
+/* Hide default HTML checkbox */
+.switch-control input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--gray-color);
+  border: 0.12vw solid darkgray;
+  border-radius: 1vw;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 0.6vw;
+  width: 0.6vw;
+  left: 0.2vw;
+  bottom: 0.2vw;
+  background-color: gray;
+  border-radius: 50%;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .switch-slider {
+  background-color: var(--extra-light-orange-color);
+  border-color: lightcoral;
+}
+
+input:focus + .switch-slider {
+  box-shadow: 0 0 1px var(--extra-light-orange-color);
+}
+
+input:checked + .switch-slider:before {
+  -webkit-transform: translateX(0.8vw);
+  -ms-transform: translateX(0.8vw);
+  transform: translateX(0.8vw);
+  background-color: var(--accent-color);
+}
+
+/* Rounded sliders */
+.switch-slider.round {
+  border-radius: 34px;
+}
+
+.switch-slider.round:before {
+  border-radius: 50%;
+}
+
+.input-checkbox {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 2vw;
+}
+
+.input-checkbox input {
+  height: 1.6vw;
+  width: 1.6vw;
+}
+
+.input-checkbox label {
+  margin-left: 1vw;
+}
+
+/* --------------------------------------CHECKBOX--------------------------------------------- */
+
+/* Customize the label (the container) */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 2vw;
+  padding-left: 3vw;
+  cursor: pointer;
+  /* font-size: 22px; */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2vw;
+  width: 2vw;
+  background-color: transparent;
+  border: 0.12vw solid var(--neutral-color);
+  border-radius: var(--border-8-desktop);
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input:not(:checked) ~ .checkmark {
+  box-shadow: rgba(255, 104, 10, 20%) 0 0 0 0.2vw;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
+  background-color: var(--accent-color);
+  border: none;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark svg {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark svg {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark svg {
+  left: 0.4vw;
+  top: 0.4vw;
+  width: 1.2vw;
+  height: 1.2vw;
+  fill: #fff;
+}
+
+/* --------------------------------------DROPDOWN-LIST--------------------------------------------- */
+
+.dropdown-options-list {
+  position: absolute;
+  top: var(--space-40-desktop);
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  /* padding: var(--space-10-desktop); */
+  border-radius: 0 0 var(--border-8-desktop) var(--border-8-desktop);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
+  z-index: 15;
+}
+
+.dropdown-options-list::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  border: 0.1vw solid var(--neutral-color);
+  border-radius: 0 0 var(--border-8-desktop) var(--border-8-desktop);
+  pointer-events: none;
+}
+
+.form-control:focus ~ .dropdown-options-list {
+  max-height: calc(10vw + 10vh);
+}
+
+.dropdown-option {
+  cursor: pointer;
+  padding: var(--space-10-desktop);
+}
+
+.dropdown-option:hover {
+  background-color: var(--gray-color);
+}
+
+/* --------------------------------------SELECT-INPUT--------------------------------------------- */
+
+.input-select {
+  padding: 0.6vw 1vw;
+  font-size: var(--font-16-desktop);
+  background-color: #fff;
+  border: 0.1vw solid var(--neutral-color);
+  border-radius: var(--border-8-desktop);
+  width: 100%;
+}

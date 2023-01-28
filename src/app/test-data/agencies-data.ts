@@ -1,0 +1,58 @@
+import { Agency } from '../core/models/agency';
+
+// export const agencies: Agency[] = [
+//   {
+//     id: 1,
+//     name: 'Green House',
+//     logoImgUrl: 'assets\\images\\Ellipse 9.png',
+//     city: 'Kyiv',
+//     budget: '$$$',
+//     rate: 4.8,
+//     projects: [
+//       // 'assets\\images\\ideas-selection\\loft\\bath_1.jpg',
+//       // 'assets\\images\\ideas-selection\\loft\\bed_1.jpg',
+//       // 'assets\\images\\ideas-selection\\loft\\kitchen_1.jpg',
+//       // 'assets\\images\\ideas-selection\\loft\\living_1.jpg',
+//       // 'assets\\images\\ideas-selection\\victorian\\bath_1.jpg',
+//       // 'assets\\images\\ideas-selection\\victorian\\bed_1.jpg',
+//       // 'assets\\images\\ideas-selection\\victorian\\kitchen_1.jpg',
+//       // 'assets\\images\\ideas-selection\\victorian\\living_1.jpg',
+//     ],
+//   },
+//   {
+//     id: 2,
+//     name: 'HStudio',
+//     logoImgUrl: 'assets\\images\\Ellipse 10.png',
+//     city: 'Lviv',
+//     budget: '$$',
+//     rate: 3.7,
+//     projects: [
+//       // 'assets\\images\\ideas-selection\\victorian\\bath_1.jpg',
+//       // 'assets\\images\\ideas-selection\\victorian\\bed_1.jpg',
+//       // 'assets\\images\\ideas-selection\\victorian\\kitchen_1.jpg',
+//       // 'assets\\images\\ideas-selection\\victorian\\living_1.jpg',
+//       // 'assets\\images\\ideas-selection\\loft\\bath_1.jpg',
+//       // 'assets\\images\\ideas-selection\\loft\\bed_1.jpg',
+//       // 'assets\\images\\ideas-selection\\loft\\kitchen_1.jpg',
+//       // 'assets\\images\\ideas-selection\\loft\\living_1.jpg',
+//     ],
+//   },
+//   {
+//     id: 3,
+//     name: 'DesignStudio',
+//     logoImgUrl: 'assets\\images\\Ellipse 11.png',
+//     city: 'Lviv',
+//     budget: '$$$',
+//     rate: 4.3,
+//     projects: [
+//       // 'assets\\images\\ideas-selection\\loft\\bath_1.jpg',
+//       // 'assets\\images\\ideas-selection\\loft\\bed_1.jpg',
+//       // 'assets\\images\\ideas-selection\\loft\\kitchen_1.jpg',
+//       // 'assets\\images\\ideas-selection\\loft\\living_1.jpg',
+//       // 'assets\\images\\ideas-selection\\victorian\\bath_1.jpg',
+//       // 'assets\\images\\ideas-selection\\victorian\\bed_1.jpg',
+//       // 'assets\\images\\ideas-selection\\victorian\\kitchen_1.jpg',
+//       // 'assets\\images\\ideas-selection\\victorian\\living_1.jpg',
+//     ],
+//   },
+// ];

@@ -1,0 +1,12 @@
+.page-not-found-container {
+  height: 100vh;
+  width: 100%;
+  padding: 5vw 16vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-not-found-container img {
+    width: 100%;
+}

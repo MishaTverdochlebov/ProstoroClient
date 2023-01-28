@@ -1,0 +1,42 @@
+<app-top-panel [isMainPage]="true" [onFooter]="scrollOnFooter"></app-top-panel>
+
+<div class="wrapper">
+  <swiper
+    #pageSwiper
+    class="page"
+    direction="vertical"
+    [resizeObserver]="true"
+    [observeParents]="true"
+    [slidesPerView]="1"
+    [mousewheel]="true"
+    [pagination]="{ clickable: true }"
+    (slideChange)="onPageSlideChange()"
+    [speed]="600"
+    [allowTouchMove]="false"
+  >
+    <ng-template swiperSlide>
+      <section id="home-section" class="section">
+        <div class="home-image">
+          <img src="assets\images\main-page\pro-home-image.svg" alt="" />
+        </div>
+        <div class="info-container">
+          <h3>Більше клієнтів та впізнаваність</h3>
+          <p>
+            За допомогою <strong>Prostoro</strong> ви можете підтримувати запас
+            нових клієнтів та витрачати менше часу на їх пошук, щоб ваша команда
+            могла зосередитись на роботі над унікальними дизайнерськими
+            проєктами.
+          </p>
+          <a href="pro/agency" class="btn btn-accent" *ngIf="authService.isLoggedIn;else authBtn">Почати зараз</a>
+          <ng-template #authBtn>
+            <button class="btn btn-accent" type="button" (click)="onLogin()">Почати зараз</button>
+          </ng-template>
+        </div>
+      </section>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <app-footer></app-footer>
+    </ng-template>
+  </swiper>
+</div>

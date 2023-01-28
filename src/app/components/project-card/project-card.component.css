@@ -1,0 +1,107 @@
+.project-card {
+  position: relative;
+}
+
+.rect-img-container {
+  cursor: pointer;
+  position: relative;
+}
+
+.rect-img-container::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.rect-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.8vw;
+}
+
+.project-card:hover img {
+  -webkit-filter: brightness(90%);
+  filter: brightness(90%);
+  transition: all 0.3s;
+}
+
+.project-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4vw;
+}
+
+.project-likes {
+  display: flex;
+  align-items: center;
+}
+
+.like-icon svg {
+  width: 1.6vw;
+  height: 1.6vw;
+  fill: #fff;
+  stroke: var(--dark-gray-color);
+  stroke-width: 5%;
+  transition: all 100ms;
+}
+
+.like-icon:hover svg {
+  cursor: pointer;
+  width: 1.7vw;
+  fill: #fff;
+  stroke: #f6d8c9;
+  stroke-width: 8%;
+}
+
+.like-icon.active svg {
+  fill: var(--accent-color);
+  stroke: var(--accent-color);
+}
+
+.save-btn-box {
+  position: absolute;
+  top: 0.6vw;
+  right: 0.6vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.91vw;
+  height: 2.91vw;
+  border-radius: 0.4vw;
+  background-color: rgba(244, 244, 249, 50%);
+  opacity: 0;
+  transition: all 300ms;
+}
+
+.project-card:hover .save-btn-box {
+  opacity: 1;
+}
+
+.save-btn-box:hover {
+  cursor: pointer;
+}
+
+.save-icon svg {
+  width: 1.6vw;
+  height: 1.6vw;
+  fill: transparent;
+  stroke: var(--dark-gray-color);
+  stroke-width: 5%;
+  stroke-miterlimit: 10;
+  transition: all 100ms;
+}
+
+.save-btn-box:hover .save-icon svg {
+  cursor: pointer;
+  fill: #fff;
+  stroke: #f6d8c9;
+  stroke-width: 8%;
+}
+
+.save-icon.active svg {
+  fill: #201C2E !important;
+  stroke: transparent !important;
+}

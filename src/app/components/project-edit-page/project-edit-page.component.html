@@ -1,0 +1,142 @@
+<app-top-panel></app-top-panel>
+
+<!-- <form [formGroup]="projectForm" (ngSubmit)="submitSave()"> -->
+<div class="save-panel-fixed">
+  <div class="save-panel-body">
+    <a href="/pro/agency" class="btn w-15">Скасувати</a>
+    <button
+      id="save-btn"
+      class="btn btn-accent w-15"
+      (click)="openSaveWindow()"
+      [disabled]="this.request!.elements!.length < 3"
+    >
+      Продовжити
+    </button>
+  </div>
+</div>
+
+<div class="project-edit-container">
+  <div class="project-edit-box">
+    <div #projectContentList class="content-list">
+      <app-project-content-element
+        *ngFor="let element of request?.elements"
+        [element]="element"
+        (removeEvent)="removeElement(element)"
+        (updateEvent)="updateElement($event)"
+      ></app-project-content-element>
+    </div>
+    <div
+      class="project-edit-start"
+      [ngClass]="{ reduced: request?.elements?.length }"
+    >
+      <div class="m-bottom-40" *ngIf="!request?.elements?.length">
+        <h5 class="font-inter">Почніть створеня свого проєкту:</h5>
+      </div>
+      <div class="d-flex">
+        <input
+          #imageInput
+          id="upload-image"
+          type="file"
+          accept="image/*"
+          (change)="processFile(imageInput)"
+        />
+        <label class="add-content-block" for="upload-image">
+          <div class="add-content-btn">
+            <svg>
+              <use xlink:href="assets\vectors\icons\like.svg#image"></use>
+            </svg>
+          </div>
+          <span>Зображення</span>
+        </label>
+        <label class="add-content-block" (click)="pushText('')">
+          <div class="add-content-btn">
+            <svg>
+              <use xlink:href="assets\vectors\icons\like.svg#text"></use>
+            </svg>
+          </div>
+          <span>Текст</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-popup-window id="save-project-popup">
+  <div class="save-project-window">
+    <div class="d-flex m-bottom-30">
+      <div class="change-main-image-box" (click)="openSaveWindow()">
+        <img
+          src="{{request!.mainImage}}"
+          alt=""
+        />
+        <div class="d-flex justify-content-center">
+          <span>Змінити обкладинку</span>
+        </div>
+      </div>
+      <div class="save-project-right">
+        <div class="control-group m-bottom-20">
+          <label class="control-label required" for="agency-name"
+            >Назва проекту</label
+          >
+          <div class="control-box">
+            <input
+              class="form-control"
+              id="agency-name"
+              placeholder=" "
+              [(ngModel)]="request!.name"
+              required
+            />
+            <div class="validation-icon"></div>
+          </div>
+        </div>
+        <div class="control-group m-bottom-20">
+          <label class="control-label" for="tags-select"
+            >Виберіть стиль, що описує вашу роботу (до 10)</label
+          >
+          <div class="control-box">
+            <input
+              class="form-control"
+              id="tags-select"
+              placeholder="Наприклад: мінімалізм"
+              (input)="filterTags('style')"
+              [(ngModel)]="inputStyleTag"
+              [disabled]="selectedStyleTags.length >= 10"
+            />
+            <div class="dropdown-options-list">
+              <div
+                class="dropdown-option"
+                (click)="addTag(tag)"
+                *ngFor="let tag of filteredStyleTags"
+              >
+                <span>{{ tag.value }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tags-list m-bottom-30">
+          <div class="tag-block" *ngFor="let tag of selectedStyleTags">
+            <span>{{ tag.value }}</span>
+            <div class="tag-close" (click)="removeTag(tag)">
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#close"></use>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <a class="btn" (click)="cancel()">Скасувати</a>
+      <!-- <button class="btn btn-accent m-left-30">Зберегти</button> -->
+      <button
+        class="btn btn-black m-left-30"
+        (click)="submitSave()"
+        [disabled]="request!.name!.length <= 3"
+      >
+        Публікувати
+      </button>
+    </div>
+  </div>
+</app-popup-window>
+<!-- </form> -->
+<app-footer></app-footer>

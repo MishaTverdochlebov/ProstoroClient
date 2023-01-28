@@ -1,0 +1,443 @@
+<app-top-panel [isMainPage]="true" [onFooter]="scrollOnFooter"></app-top-panel>
+
+<div class="wrapper">
+  <swiper
+    #pageSwiper
+    class="page"
+    direction="vertical"
+    [resizeObserver]="true"
+    [observeParents]="true"
+    [slidesPerView]="1"
+    [mousewheel]="true"
+    [pagination]="{ clickable: true }"
+    (slideChange)="onPageSlideChange()"
+    [speed]="600"
+    [allowTouchMove]="false"
+  >
+    <ng-template swiperSlide>
+      <section id="home-section" class="section">
+        <div class="home-image">
+          <img src="assets\images\main-page\home-image-colors.png" alt="" />
+        </div>
+        <div class="info-container">
+          <h3>Дім твоєї мрії не за горами</h3>
+          <p>
+            <strong>Prostoro</strong> — це український сервіс архітектури та
+            дизайну. Ми робимо вашу співпрацю з найкращими спеціалістами простою
+            та зручною.
+          </p>
+        </div>
+      </section>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <section id="find-pro-section" class="section">
+        <h3>Знайди дизайнера, від якого будеш в захваті</h3>
+        <div class="icon-info-block">
+          <img src="assets\images\main-page\feedback.png" alt="" />
+          <div>
+            <h6>Відгуки реальних замовників</h6>
+            <p>
+              Перевірений нами творчий колектив створює магію дизайну. Завдяки
+              нашій отримати більше ніде.
+            </p>
+          </div>
+        </div>
+        <div class="icon-info-block">
+          <img src="assets\images\main-page\ukraine.png" alt="" />
+          <div>
+            <h6>Найбільша база України</h6>
+            <p>
+              Перевірений нами творчий колектив створює магію дизайну. Завдяки
+              нашій отримати більше ніде.
+            </p>
+          </div>
+        </div>
+        <div class="icon-info-block">
+          <img src="assets\images\main-page\vision.png" alt="" />
+          <div>
+            <h6>Лише перевірені виконавці</h6>
+            <p>
+              Перевірений нами творчий колектив створює магію дизайну. Завдяки
+              нашій отримати більше ніде.
+            </p>
+          </div>
+        </div>
+        <a class="btn btn-accent" href="/agencies"> Шукати дизайнера </a>
+      </section>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <section id="projects-section" class="section">
+        <div class="info-container">
+          <h2>Надихайся проєктами</h2>
+          <p>
+            Клієнт дуже важливий, за клієнтом піде клієнт. Але як найкраще це
+            зробити зараз? Діти та молодь, які піклуються про довкілля. Кожен
+            працівник не сумує, перш ніж ненавидить їх, але він є хорошим другом
+            цілі.
+          </p>
+          <a class="btn btn-accent" href="/agencies"> Шукати натхнення </a>
+        </div>
+        <div class="selection-image">
+          <!-- <img src="{{ selectedImgPath }}" alt="" /> -->
+          <swiper
+            #images
+            [resizeObserver]="true"
+            [observeParents]="true"
+            [slidesPerView]="1.2"
+            [initialSlide]="1"
+            [spaceBetween]="10"
+            [centeredSlides]="true"
+            [loop]="true"
+            (slideChange)="onImagesSlideChange()"
+            [speed]="600"
+            [breakpoints]="{
+              '768': {
+                slidesPerView: 1,
+                initialSlide: 0
+              }
+            }"
+          >
+            <ng-template swiperSlide>
+              <img
+                src="{{
+                  'assets\\images\\ideas-selection\\' +
+                    selectedStyle +
+                    '\\bed_1.jpg'
+                }}"
+                alt=""
+              />
+            </ng-template>
+            <ng-template swiperSlide>
+              <img
+                src="{{
+                  'assets\\images\\ideas-selection\\' +
+                    selectedStyle +
+                    '\\kitchen_1.jpg'
+                }}"
+                alt=""
+              />
+            </ng-template>
+            <ng-template swiperSlide>
+              <img
+                src="{{
+                  'assets\\images\\ideas-selection\\' +
+                    selectedStyle +
+                    '\\bath_1.jpg'
+                }}"
+                alt=""
+              />
+            </ng-template>
+            <ng-template swiperSlide>
+              <img
+                src="{{
+                  'assets\\images\\ideas-selection\\' +
+                    selectedStyle +
+                    '\\living_1.jpg'
+                }}"
+                alt=""
+              />
+            </ng-template>
+          </swiper>
+        </div>
+        <div class="selection-icons">
+          <div
+            class="selection-icon"
+            (click)="onSelectionIconClick('bed')"
+            [ngClass]="{ active: selectedRoom == 'bed' }"
+          >
+            <svg>
+              <use
+                xlink:href="assets\vectors\interior-icons\sprite.svg#bed"
+              ></use>
+            </svg>
+          </div>
+          <div
+            class="selection-icon"
+            (click)="onSelectionIconClick('kitchen')"
+            [ngClass]="{ active: selectedRoom == 'kitchen' }"
+          >
+            <svg>
+              <use
+                xlink:href="assets\vectors\interior-icons\sprite.svg#kitchen"
+              ></use>
+            </svg>
+          </div>
+          <div
+            class="selection-icon"
+            (click)="onSelectionIconClick('bath')"
+            [ngClass]="{ active: selectedRoom == 'bath' }"
+          >
+            <svg>
+              <use
+                xlink:href="assets\vectors\interior-icons\sprite.svg#bath"
+              ></use>
+            </svg>
+          </div>
+          <div
+            class="selection-icon"
+            (click)="onSelectionIconClick('living')"
+            [ngClass]="{ active: selectedRoom == 'living' }"
+          >
+            <svg>
+              <use
+                xlink:href="assets\vectors\interior-icons\sprite.svg#living"
+              ></use>
+            </svg>
+          </div>
+        </div>
+        <div class="selection-styles desktop-only">
+          <div
+            class="selection-style"
+            (click)="onSelectionStyleClick('victorian')"
+            [ngClass]="{ active: selectedStyle == 'victorian' }"
+          >
+            <span>victorian</span>
+          </div>
+          <div
+            class="selection-style"
+            (click)="onSelectionStyleClick('minimalism')"
+            [ngClass]="{ active: selectedStyle == 'minimalism' }"
+          >
+            <span>minimalism</span>
+          </div>
+          <div
+            class="selection-style"
+            (click)="onSelectionStyleClick('high-tech')"
+            [ngClass]="{ active: selectedStyle == 'high-tech' }"
+          >
+            <span>high-tech</span>
+          </div>
+          <div
+            class="selection-style"
+            (click)="onSelectionStyleClick('modern')"
+            [ngClass]="{ active: selectedStyle == 'modern' }"
+          >
+            <span>modern</span>
+          </div>
+          <div
+            class="selection-style"
+            (click)="onSelectionStyleClick('scandinavian')"
+            [ngClass]="{ active: selectedStyle == 'scandinavian' }"
+          >
+            <span>scandinavian</span>
+          </div>
+          <div
+            class="selection-style"
+            (click)="onSelectionStyleClick('loft')"
+            [ngClass]="{ active: selectedStyle == 'loft' }"
+          >
+            <span>loft</span>
+          </div>
+          <div
+            class="selection-style"
+            (click)="onSelectionStyleClick('provans')"
+            [ngClass]="{ active: selectedStyle == 'provans' }"
+          >
+            <span>provans</span>
+          </div>
+          <div
+            class="selection-style"
+            (click)="onSelectionStyleClick('artdeco')"
+            [ngClass]="{ active: selectedStyle == 'artdeco' }"
+          >
+            <span>art-deco</span>
+          </div>
+        </div>
+        <div id="swiper-styles">
+          <swiper
+            [observeParents]="true"
+            [observeSlideChildren]="true"
+            [resizeObserver]="true"
+            [slidesPerView]="4.4"
+            [centeredSlides]="true"
+            [loop]="true"
+          >
+            <ng-template swiperSlide>
+              <div
+                class="selection-style"
+                (click)="onSelectionStyleClick('victorian')"
+                [ngClass]="{ active: selectedStyle == 'victorian' }"
+              >
+                <span>victorian</span>
+              </div>
+            </ng-template>
+            <ng-template swiperSlide>
+              <div
+                class="selection-style"
+                (click)="onSelectionStyleClick('minimalism')"
+                [ngClass]="{ active: selectedStyle == 'minimalism' }"
+              >
+                <span>minimalism</span>
+              </div></ng-template
+            >
+            <ng-template swiperSlide>
+              <div
+                class="selection-style active"
+                (click)="onSelectionStyleClick('high-tech')"
+                [ngClass]="{ active: selectedStyle == 'high-tech' }"
+              >
+                <span>high-tech</span>
+              </div></ng-template
+            >
+            <ng-template swiperSlide>
+              <div
+                class="selection-style"
+                (click)="onSelectionStyleClick('modern')"
+                [ngClass]="{ active: selectedStyle == 'modern' }"
+              >
+                <span>modern</span>
+              </div></ng-template
+            >
+            <ng-template swiperSlide>
+              <div
+                class="selection-style"
+                (click)="onSelectionStyleClick('scandinavian')"
+                [ngClass]="{ active: selectedStyle == 'scandinavian' }"
+              >
+                <span>scandinavian</span>
+              </div></ng-template
+            >
+            <ng-template swiperSlide>
+              <div
+                class="selection-style"
+                (click)="onSelectionStyleClick('loft')"
+                [ngClass]="{ active: selectedStyle == 'loft' }"
+              >
+                <span>loft</span>
+              </div></ng-template
+            >
+            <ng-template swiperSlide>
+              <div
+                class="selection-style"
+                (click)="onSelectionStyleClick('provans')"
+                [ngClass]="{ active: selectedStyle == 'provans' }"
+              >
+                <span>provans</span>
+              </div></ng-template
+            >
+            <ng-template swiperSlide>
+              <div
+                class="selection-style"
+                (click)="onSelectionStyleClick('artdeco')"
+                [ngClass]="{ active: selectedStyle == 'artdeco' }"
+              >
+                <span>art-deco</span>
+              </div></ng-template
+            >
+          </swiper>
+        </div>
+      </section>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <section id="blog-section" class="section">
+        <h3>Поради, тенденції та безліч натхнення</h3>
+        <div class="blog-slider">
+          <swiper
+            [resizeObserver]="true"
+            [observeParents]="true"
+            [observeSlideChildren]="true"
+            [slidesPerView]="4"
+            [slidesPerGroup]="4"
+            [pagination]="{ clickable: true }"
+          >
+            <ng-template swiperSlide>
+              <a class="blog-item" href="/blog/1">
+                <img
+                  class="blog-item-image"
+                  src="assets\images\blog-img-1.jpg"
+                  alt=""
+                />
+                <h6>Які рослини вибрати для квартири</h6>
+              </a>
+            </ng-template>
+            <ng-template swiperSlide>
+              <a class="blog-item" href="/blog/2">
+                <img
+                  class="blog-item-image"
+                  src="assets\images\blog-img-2.jpg"
+                  alt=""
+                />
+                <h6>Як пандемія змінила дизайн інтер’єру</h6>
+              </a>
+            </ng-template>
+            <ng-template swiperSlide>
+              <a class="blog-item" href="/blog/3">
+                <img
+                  class="blog-item-image"
+                  src="assets\images\blog-img-3.jpg"
+                  alt=""
+                />
+                <h6>Топ 20 найкращих сучасних інтер’єрів</h6>
+              </a>
+            </ng-template>
+            <ng-template swiperSlide>
+              <a class="blog-item" href="/blog/1">
+                <img
+                  class="blog-item-image"
+                  src="assets\images\blog-img-4.jpg"
+                  alt=""
+                />
+                <h6>Як розумний дизайн рятує квадратні метри</h6>
+              </a>
+            </ng-template>
+            <ng-template swiperSlide>
+              <a class="blog-item" href="/blog/2">
+                <img
+                  class="blog-item-image"
+                  src="assets\images\blog-img-2.jpg"
+                  alt=""
+                />
+                <h6>Як пандемія змінила дизайн інтер’єру</h6>
+              </a>
+            </ng-template>
+            <ng-template swiperSlide>
+              <a class="blog-item" href="/blog/3">
+                <img
+                  class="blog-item-image"
+                  src="assets\images\blog-img-3.jpg"
+                  alt=""
+                />
+                <h6>Топ 20 найкращих сучасних інтер’єрів</h6>
+              </a>
+            </ng-template>
+            <ng-template swiperSlide>
+              <a class="blog-item" href="/blog/1">
+                <img
+                  class="blog-item-image"
+                  src="assets\images\blog-img-4.jpg"
+                  alt=""
+                />
+                <h6>Як розумний дизайн рятує квадратні метри</h6>
+              </a>
+            </ng-template>
+            <ng-template swiperSlide>
+              <a class="blog-item" href="/blog/2">
+                <img
+                  class="blog-item-image"
+                  src="assets\images\blog-img-1.jpg"
+                  alt=""
+                />
+                <h6>Які рослини вибрати для квартири</h6>
+              </a>
+            </ng-template>
+          </swiper>
+        </div>
+        <a href="/blog/3" class="btn btn-accent">Читати блог</a>
+      </section>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <section id="pro-section" class="section">
+        <h3>Зареєструй свою компанію та отримай нових клієнтів</h3>
+        <a href="/pro" class="btn btn-black">Дізнатись більше</a>
+      </section>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <app-footer></app-footer>
+    </ng-template>
+  </swiper>
+</div>

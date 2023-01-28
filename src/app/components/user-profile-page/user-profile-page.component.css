@@ -1,0 +1,136 @@
+.profile-page-container {
+  min-height: 100vh;
+  padding: 5vw 11.5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--space-40-desktop);
+  text-align: center;
+  margin-bottom: var(--space-100-desktop);
+}
+
+.profile-avatar-container img {
+  width: var(--space-60-desktop);
+  height: var(--space-60-desktop);
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-saves-container {
+  width: 100%;
+}
+
+.profile-saves-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.profile-saves-list::after {
+  content: "";
+  flex: auto;
+}
+
+.saves-card-box {
+  width: 33.33%;
+  padding: 1vw;
+}
+
+.saves-card-box:nth-of-type(3n) {
+  padding-left: 2vw;
+  padding-right: 0;
+}
+
+.saves-card-box:nth-of-type(3n + 1) {
+  padding-left: 0;
+  padding-right: 2vw;
+}
+
+.saves-card {
+  position: relative;
+}
+
+.rect-container {
+  /* cursor: pointer; */
+  display: block;
+  position: relative;
+}
+
+.rect-container::after {
+  content: "";
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 100%;
+}
+
+.quarter-image-box {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: var(--neutral-color);
+  border: 0.12vw solid white;
+  overflow: hidden;
+}
+
+.quarter-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo-quarter-image-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.logo-quarter-image {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0.7vw 0px;
+}
+
+.quarter-image-box:nth-of-type(4n + 1) {
+  top: 0;
+  left: 0;
+  border-top-left-radius: var(--border-8-desktop);
+}
+
+.quarter-image-box:nth-of-type(4n + 2) {
+  top: 0;
+  right: 0;
+  border-top-right-radius: var(--border-8-desktop);
+}
+
+.quarter-image-box:nth-of-type(4n + 3) {
+  bottom: 0;
+  left: 0;
+  border-bottom-left-radius: var(--border-8-desktop);
+}
+
+.quarter-image-box:nth-of-type(4n) {
+  bottom: 0;
+  right: 0;
+  border-bottom-right-radius: var(--border-8-desktop);
+}
+
+.saves-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-15-desktop);
+}

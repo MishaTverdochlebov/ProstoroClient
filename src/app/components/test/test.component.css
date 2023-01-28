@@ -1,0 +1,62 @@
+@import "swiper/swiper.min.css";
+@import "swiper/modules/pagination/pagination.min.css";
+@import "swiper/modules/navigation/navigation.min.css";
+@import "swiper/modules/mousewheel/mousewheel.min.css";
+
+.page {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.page_wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+/* .page_screen { } */
+
+.screen {
+  flex: 1 0 100%;
+  position: relative;
+}
+
+.screen_content {
+  padding: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.section {
+  padding-top: 5vw;
+  height: 100vh;
+  width: 100%;
+}
+
+.section:nth-of-type(1) {
+  background-color: rgb(194, 213, 230);
+}
+.section:nth-of-type(2) {
+  background-color: beige;
+}
+.section:nth-of-type(3) {
+  background-color: cadetblue;
+}
+
+.swiper-pagination-vertical.swiper-pagination-bullets, .swiper-vertical>.swiper-pagination-bullets {
+  left: 2vw;
+  right: initial;
+}
+
+.swiper-pagination-bullet {
+  margin: 4vh 0 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #000;
+}

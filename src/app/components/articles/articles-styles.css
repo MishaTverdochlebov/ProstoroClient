@@ -1,0 +1,183 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap"); */
+:root {
+  --font-14-desktop: 0.972vw;
+  --font-16-desktop: 1.111vw;
+  --font-20-desktop: 1.389vw;
+  --font-34-desktop: 2.361vw;
+  --font-60-desktop: 4.167vw;
+  --font-96-desktop: 6.667vw;
+  --space-5-desktop: 0.347vw;
+  --space-10-desktop: 0.694vw;
+  --space-15-desktop: 1.042vw;
+  --space-20-desktop: 1.389vw;
+  --space-30-desktop: 2.083vw;
+  --space-40-desktop: 2.778vw;
+  --space-60-desktop: 4.167vw;
+  --space-100-desktop: 6.944vw;
+  --border-4-desktop: 0.278vw;
+  --border-8-desktop: 0.555vw;
+  --border-16-desktop: 1.11vw;
+}
+
+.article-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.article-out-container {
+  padding: 10vw 11.5vw 0 11.5vw;
+  width: 100%;
+}
+
+.article-header {
+  width: 100%;
+  border-bottom: 0.12vw solid var(--dark-gray-color);
+}
+
+.article-topic {
+  display: inline-block;
+  font-family: "Unbounded";
+  font-size: var(--font-34-desktop);
+  font-weight: 400;
+  margin-bottom: var(--space-20-desktop);
+}
+
+.article-date-info {
+  display: block;
+  font-size: var(--font-14-desktop);
+  font-family: "Inter";
+  color: var(--dark-gray-color);
+  margin-bottom: var(--space-20-desktop);
+}
+
+.article-in-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 3vw 6.5vw;
+}
+
+.article-subtopic {
+  display: inline-block;
+  align-self: start;
+  margin-bottom: var(--space-30-desktop);
+}
+
+/* h6 {
+    font-family: 'Unbounded';
+    font-size: var(--font-30-desktop);
+    font-weight: 400;
+    display: flex;
+    justify-content: left;
+} */
+
+.article-text-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  background: var(--light-orange-color);
+  border-radius: var(--border-8-desktop);
+  margin: var(--space-40-desktop);
+}
+
+.article-text-block p {
+  font-size: var(--font-16-desktop);
+  font-family: "Inter";
+  margin: var(--space-40-desktop);
+}
+
+.article-text {
+  margin: var(--space-30-desktop) 0;
+}
+
+.article-outer-quote-container {
+  padding-left: var(--space-100-desktop);
+  padding-right: var(--space-100-desktop);
+  margin-bottom: var(--space-40-desktop);
+}
+
+.article-inner-quote-container {
+  position: relative;
+  border: 0.12vw solid var(--dark-gray-color);
+  padding: var(--space-40-desktop);
+  border-radius: var(--border-8-desktop);
+}
+
+.article-quote-mark {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: var(--space-10-desktop);
+  left: var(--space-20-desktop);
+  top: -0.2vw;
+  height: var(--space-40-desktop);
+  width: var(--space-40-desktop);
+  z-index: 10;
+}
+
+.article-quote-mark span {
+  display: inline-block;
+  font-family: "Unbounded";
+  font-style: normal;
+  font-size: var(--font-96-desktop);
+  color: var(--accent-color);
+}
+
+.article-quote-text {
+  display: inline-block;
+  margin-bottom: var(--space-15-desktop);
+  font-size: var(--font-16-desktop);
+}
+
+.article-quote-author {
+  display: inline-block;
+  font-size: var(--font-14-desktop);
+  font-weight: 500;
+}
+
+.article-author {
+  display: inline-block;
+  align-self: flex-end;
+  font-size: var(--font-14-desktop);
+  margin: var(--space-40-desktop);
+  font-family: "Inter";
+  color: var(--dark-gray-color);
+  text-align: right;
+  font-style: italic;
+}
+
+.article-image-container img{
+  display: inline-block;
+  width: 45%;
+}
+.article-image-2{
+  margin-left: var(--space-30-desktop);
+}
+.article-undertopic{
+  padding-bottom: var(--space-10-desktop);
+}
+
+.article-list-outer-container {
+  padding-left: var(--space-100-desktop);
+  padding-right: var(--space-100-desktop);
+}
+
+.article-list-inner-container {
+  border-radius: var(--border-8-desktop);
+  padding: var(--space-40-desktop);
+  background-color: var(--extra-light-gray-color);
+}
+
+.article-list-inner-container ul li {
+  list-style-type: disc;
+  margin-top: var(--space-10-desktop);
+  margin-left: var(--space-10-desktop);
+}

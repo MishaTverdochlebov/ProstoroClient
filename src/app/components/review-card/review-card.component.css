@@ -1,0 +1,102 @@
+
+.review-card {
+    padding: 1.5vw;
+}
+
+.review-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1vw;
+}
+
+.review-title img {
+    width: 3vw;
+    margin-right: 1vw;
+}
+
+.review-username {
+    display: inline-block;
+    margin-bottom: 0.4vw;
+}
+
+.review-date {
+    color: var(--dark-gray-color);
+}
+
+.warning-icon {
+    margin-left: auto;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+}
+
+.review-card:hover .warning-icon{
+    opacity: 1;
+    visibility: visible;
+}
+
+.warning-icon svg{
+    width: 1.4vw;
+    height: 1.4vw;
+    fill: var(--neutral-color);
+    transition: .3s;
+}
+
+.warning-icon:hover svg{
+    fill: var(--dark-neutral-color);
+}
+
+.rate {
+    display: flex;
+    margin-bottom: 1vw;
+}
+
+.rate-star {
+    margin-left: 1vw;
+}
+
+.rate-star:first-of-type {
+    margin-left: 0;
+}
+
+.rate-star img {
+    width: 1.4vw;
+}
+
+.complaint-window {
+    background-color: white;
+    width: 35vw;
+    padding: 4vw;
+    border-radius: var(--border-8-desktop);
+}
+
+.complaint-window h6 {
+    font-family: "Inter", sans-serif;
+    margin-bottom: 1vw;
+}
+
+.complaint-window p {
+    color: var(--dark-gray-color);
+    margin-bottom: 1vw;
+}
+
+.custom-radio {
+    margin-bottom: 1vw;
+}
+
+.custom-radio .custom-control-label {
+    margin-left: 1vw;
+}
+
+.complaint-window textarea {
+    width: 24vw;
+    height: 6vw;
+    padding: 1vw;
+    border: 0.1vw solid var(--gray-hover-color);
+    border-radius: var(--border-8-desktop);
+    font-size: var(--font-12-desktop);
+    resize: none;
+
+    margin-bottom: 1vw;
+}

@@ -1,0 +1,10 @@
+<div class="popup-background" [ngClass]="{ active: isActive }">
+  <div class="popup-container">
+    <div class="popup-content">
+      <ng-content></ng-content>
+      <div class="close-button" (click)="close()">
+        <img src="assets\vectors\close-circle-icon.svg" alt="" />
+      </div>
+    </div>
+  </div>
+</div>

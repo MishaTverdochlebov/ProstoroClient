@@ -1,0 +1,32 @@
+<div class="project-card">
+  <!-- <img src="assets\images\ideas-selection\victorian\living_1.jpg" alt="" /> -->
+  <div class="rect-img-container" (click)="openProjectWindow()">
+    <img class="rect-img" src="{{ project.imgUrl }}" alt=""/>
+  </div>
+  <div class="save-btn-box" (click)="onSaveClick()" *ngIf="displayButtons">
+    <div class="save-icon" [ngClass]="{ active: project.isSaved }">
+      <svg>
+        <use xlink:href="assets\vectors\icons\like.svg#save"></use>
+      </svg>
+    </div>
+  </div>
+  <div class="project-card-title">
+    <p>{{ project.name }}</p>
+    <div class="project-likes"  *ngIf="displayButtons">
+      <!-- <span>{{ project.likesCount }}</span> -->
+      <div
+        class="like-icon"
+        (click)="onLikeClick()"
+        [ngClass]="{ active: project.isLiked }"
+      >
+        <svg>
+          <use xlink:href="assets\vectors\icons\like.svg#like"></use>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-popup-window id="{{ projectPopupId }}">
+  <app-project-details [projectId]="project.id" (actionEvent)="detailsChildEvent($event)"></app-project-details>
+</app-popup-window>

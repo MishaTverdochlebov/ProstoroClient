@@ -1,0 +1,118 @@
+<div class="content-separator" [ngClass]="{ removed: isRemoved }"></div>
+<div
+  class="content-image"
+  *ngIf="element.type === 'image'; else contentText"
+  [ngClass]="{ removed: isRemoved }"
+>
+  <img src="{{ element.image.imgUrl }}" />
+  <div
+    #addTagsBtn
+    class="btn add-tags-btn"
+    [ngClass]="{ pressed: addTagsBoxActive }"
+    (click)="addTagsBoxActive = !addTagsBoxActive"
+  >
+    <svg>
+      <use xlink:href="assets\vectors\icons\like.svg#cross"></use>
+    </svg>
+    <span>Додати теги</span>
+  </div>
+  <div
+    #addTagsBox
+    class="add-tags-box"
+    [ngClass]="{ active: addTagsBoxActive }"
+  >
+    <div class="control-group m-bottom-20">
+      <label class="control-label" for="agency-name"
+        >Виберіть стиль, що описує це зображення (до 3)</label
+      >
+      <div class="control-box">
+        <input
+          class="form-control"
+          id="agency-name"
+          placeholder="Наприклад: мінімалізм"
+          (input)="filterTags('style')"
+          [(ngModel)]="inputStyleTag"
+          [disabled]="selectedStyleTags.length >= 3"
+        />
+        <div class="dropdown-options-list">
+          <div
+            class="dropdown-option"
+            (click)="addTag(tag)"
+            *ngFor="let tag of filteredStyleTags"
+          >
+            <span>{{ tag.value }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tags-list m-bottom-30">
+      <div class="tag-block" *ngFor="let tag of selectedStyleTags">
+        <span>{{ tag.value }}</span>
+        <div class="tag-close" (click)="removeTag(tag)">
+          <svg>
+            <use xlink:href="assets\vectors\icons\like.svg#close"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="control-group m-bottom-20">
+      <label class="control-label" for="agency-name"
+        >Виберіть зображене приміщення (до 1)</label
+      >
+      <div class="control-box">
+        <input
+          class="form-control"
+          id="agency-name"
+          placeholder="Наприклад: кухня"
+          (input)="filterTags('room')"
+          [(ngModel)]="inputRoomTag"
+          [disabled]="selectedRoomTags.length >= 1"
+        />
+        <div class="dropdown-options-list">
+          <div
+            class="dropdown-option"
+            (click)="addTag(tag)"
+            *ngFor="let tag of filteredRoomTags"
+          >
+            <span>{{ tag.value }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tags-list">
+      <div class="tag-block" *ngFor="let tag of selectedRoomTags">
+        <span>{{ tag.value }}</span>
+        <div class="tag-close" (click)="removeTag(tag)">
+          <svg>
+            <use xlink:href="assets\vectors\icons\like.svg#close"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-black" (click)="updateElement(); addTagsBoxActive = false">Підтвердити</button>
+    </div>
+  </div>
+  <div class="remove-btn" (click)="removeElement()">
+    <svg>
+      <use xlink:href="assets\vectors\icons\like.svg#remove"></use>
+    </svg>
+  </div>
+</div>
+<ng-template #contentText>
+  <div class="content-text" [ngClass]="{ removed: isRemoved }">
+    <div class="position-relative">
+      <textarea
+        #textarea
+        autosize="true"
+        [minRows]="1"
+        [value]="element.text"
+      ></textarea>
+      <div class="remove-btn" (click)="removeElement()">
+        <svg>
+          <use xlink:href="assets\vectors\icons\like.svg#remove"></use>
+        </svg>
+      </div>
+    </div>
+  </div>
+</ng-template>

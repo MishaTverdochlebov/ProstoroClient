@@ -1,0 +1,40 @@
+.finish-edit-window {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-16-desktop);
+  padding: var(--space-40-desktop) var(--space-70-desktop);
+  max-width: 35vw;
+  height: auto;
+}
+
+.finish-edit-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-30-desktop);
+}
+
+.finish-edit-check:last-of-type {
+  margin-bottom: var(--space-70-desktop);
+}
+
+.finish-edit-check svg {
+  width: var(--space-20-desktop);
+  height: var(--space-15-desktop);
+  fill: var(--neutral-color);
+  margin-right: var(--space-15-desktop);
+}
+
+.finish-edit-check.checked svg {
+  fill: var(--green-color);
+}
+
+.finish-edit-check.checked span {
+  color: var(--dark-gray-color);
+}
+
+.finish-edit-window .btn {
+  width: fit-content;
+  padding-left: var(--space-30-desktop);
+  padding-right: var(--space-30-desktop);
+}

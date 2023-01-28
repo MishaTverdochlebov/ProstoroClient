@@ -1,0 +1,167 @@
+<div id="header" [ngClass]="{ transparent: isMainPage && !onFooter }">
+  <div class="header-body">
+    <a href="{{ isProPage ? '/pro' : '' }}" class="logo-wrapper">
+      <div class="logo">
+        <!-- <img class="logo-text" src="assets\logo\prostoro-logo.svg" alt="" /> -->
+        <img class="logo-text" src="assets\logo\prostoro-logo2.svg" alt="" />
+      </div>
+    </a>
+    <div
+      class="nav-burger"
+      (click)="onBurgerClick()"
+      [ngClass]="{ active: navMenuActive }"
+    >
+      <span></span>
+    </div>
+    <div
+      class="nav-menu"
+      [ngClass]="{ active: navMenuActive }"
+      *ngIf="!isProPage; else topPanelPro"
+    >
+      <a href="/agencies" class="nav-link">Знайти дизайнера</a>
+      <!-- <a href="/projects" class="nav-link">Натхнення</a> -->
+      <!-- <a href="" class="nav-link">Блог</a> -->
+
+      <a *ngIf="this.authService.isLoggedIn" href="messages" class="nav-link">
+        <svg *ngIf="!this.messagesService.unreadMessages; else unreadMessages">
+          <use xlink:href="assets\vectors\icons\icon-42.svg#mail"></use>
+        </svg>
+        <ng-template #unreadMessages>
+          <svg>
+            <use
+              xlink:href="assets\vectors\icons\icon-42.svg#mail-unread"
+            ></use>
+          </svg>
+        </ng-template>
+      </a>
+      <!-- <a *ngIf="this.authService.isLoggedIn" href="" class="nav-link">
+        <svg>
+          <use xlink:href="assets\vectors\icons\icon-42.svg#bookmark"></use>
+        </svg>
+      </a> -->
+      <button
+        #profileToggleButton
+        *ngIf="this.authService.isLoggedIn"
+        class="nav-link"
+        (click)="profilePopupActive = !profilePopupActive"
+      >
+        <img class="profile-info-image" src="{{!profileInfo?.imgUrl ? 'assets\\images\\User-60.png' : profileInfo?.imgUrl}}" />
+      </button>
+      <div
+        #profilePopup
+        *ngIf="this.authService.isLoggedIn"
+        class="profile-popup"
+        [ngClass]="{ active: profilePopupActive }"
+      >
+        <div class="profile-popup-header">
+          <img class="profile-info-image" class="m-bottom-20" src="{{!profileInfo?.imgUrl ? 'assets\\images\\User-60.png' : profileInfo?.imgUrl}}" alt="" />
+          <h5 class="profile-info-name font-inter fw-500">{{profileInfo?.name}}</h5>
+        </div>
+        <div class="profile-options-container">
+          <a href="profile" class="profile-option"> Мої підбірки </a>
+          <a href="profile-settings" class="profile-option"> Налаштування профіля </a>
+          <div class="profile-options-separator"></div>
+          <a href="" class="profile-option" (click)="onLogoutClick()"> Вийти </a>
+        </div>
+      </div>
+      <!-- <a
+        *ngIf="this.authService.isLoggedIn"
+        href=""
+        class="nav-link"
+        (click)="onLogoutClick()"
+      >
+        <svg>
+          <use xlink:href="assets\vectors\icons\icon-42.svg#back"></use>
+        </svg>
+      </a> -->
+
+      <a
+        *ngIf="!this.authService.isLoggedIn"
+        class="nav-link"
+        (click)="onRegisterClick()"
+        >Реєстрація</a
+      >
+      <a
+        *ngIf="!this.authService.isLoggedIn"
+        class="nav-link login"
+        (click)="onLoginClick()"
+        >Вхід</a
+      >
+      <a *ngIf="!this.authService.isLoggedIn" href="/pro" class="nav-link"
+        >Виконавцю<img class="m-left-10" src="assets\vectors\arrow-i.svg" alt=""
+      /></a>
+    </div>
+    <ng-template #topPanelPro>
+      <div class="nav-menu" [ngClass]="{ active: navMenuActive }">
+        <!-- <a href="" class="nav-link">Блог</a> -->
+        <a
+          *ngIf="this.authService.isLoggedIn"
+          href="/pro/messages"
+          class="nav-link"
+        >
+          <svg
+            *ngIf="!this.messagesService.unreadMessages; else unreadMessages"
+          >
+            <use xlink:href="assets\vectors\icons\icon-42.svg#mail"></use>
+          </svg>
+          <ng-template #unreadMessages>
+            <svg>
+              <use
+                xlink:href="assets\vectors\icons\icon-42.svg#mail-unread"
+              ></use>
+            </svg>
+          </ng-template>
+        </a>
+        <!-- <a *ngIf="this.authService.isLoggedIn" href="" class="nav-link">
+          <svg>
+            <use xlink:href="assets\vectors\icons\icon-42.svg#bookmark"></use>
+          </svg>
+        </a> -->
+        <a
+          *ngIf="this.authService.isLoggedIn"
+          href="/pro/agency"
+          class="nav-link"
+        >
+          <img class="profile-info-image" src="{{!profileInfo?.imgUrl ? 'assets\\images\\User-60.png' : profileInfo?.imgUrl}}" />
+        </a>
+        <a
+          *ngIf="this.authService.isLoggedIn"
+          href=""
+          class="nav-link"
+          (click)="onLogoutClick()"
+        >
+          <svg>
+            <use xlink:href="assets\vectors\icons\icon-42.svg#back"></use>
+          </svg>
+        </a>
+
+        <a
+          *ngIf="!this.authService.isLoggedIn"
+          class="nav-link"
+          (click)="onProRegisterClick()"
+          >Реєстрація</a
+        >
+        <a
+          *ngIf="!this.authService.isLoggedIn"
+          class="nav-link login"
+          (click)="onProLoginClick()"
+          >Вхід</a
+        >
+        <a *ngIf="!this.authService.isLoggedIn" href="" class="nav-link"
+          >Замовнику <img class="m-left-10" src="assets\vectors\arrow-i.svg" alt=""
+        /></a>
+      </div>
+    </ng-template>
+    <div class="user-icon">
+      <img class="logo-image" src="assets\vectors\user.svg" alt="" />
+    </div>
+  </div>
+</div>
+
+<app-popup-window id="login-popup">
+  <app-login-window></app-login-window>
+</app-popup-window>
+
+<app-popup-window id="pro-login-popup">
+  <app-pro-login-window></app-pro-login-window>
+</app-popup-window>

@@ -1,0 +1,150 @@
+<app-top-panel></app-top-panel>
+<div class="d-flex">
+  <div class="left-panel">
+    <form [formGroup]="filterForm" (ngSubmit)="submitFilter()">
+      <div class="form-container">
+        <div class="control-group m-bottom-20">
+          <div class="control-box">
+            <input
+              formControlName="tag"
+              class="form-control"
+              id="tags-select"
+              placeholder="Ключові слова..."
+              (input)="filterTags('style')"
+              [disabled]="selectedStyleTags.length >= 3"
+            />
+            <div class="dropdown-options-list">
+              <div
+                class="dropdown-option"
+                (click)="addTag(tag)"
+                *ngFor="let tag of filteredStyleTags"
+              >
+                <span>{{ tag.ua }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tags-list">
+          <div class="tag-block" *ngFor="let tag of selectedStyleTags">
+            <span>{{ tag.ua }}</span>
+            <div class="tag-close" (click)="removeTag(tag)">
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#close"></use>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="control-group m-bottom-20">
+          <div class="control-box">
+            <input
+              formControlName="city"
+              class="form-control"
+              id="agency-city"
+              placeholder="Обрати місто"
+              (input)="filterCities()"
+            />
+            <div class="dropdown-options-list">
+              <div
+                class="dropdown-option"
+                (click)="selectCity(city)"
+                *ngFor="let city of filteredCities"
+              >
+                <span>{{ city.ua }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="control-box m-bottom-20">
+          <label class="checkbox-container"
+            >Віддалена співпраця
+            <input
+              type="checkbox"
+              formControlName="remote"
+              (input)="filterButtonAvailable = true"
+            />
+            <span class="checkmark">
+              <svg>
+                <use xlink:href="assets\vectors\icons\like.svg#valid"></use>
+              </svg>
+            </span>
+          </label>
+        </div>
+        <div class="control-box m-bottom-20">
+          <select
+          formControlName="budget"
+          (input)="filterButtonAvailable = true"
+          class="input-select"
+          name="budget"
+          id="budget"
+        >
+          <option [defaultSelected]="true" value="">Бюджет:</option>
+          <option value="$">$ < 15 000</option>
+          <option value="$$">$$ < 25 000</option>
+          <option value="$$$">$$$ < 40 000</option>
+          <option value="$$$$">$$$$ > 40 000</option>
+        </select>
+        </div>
+        <button
+          class="btn btn-black"
+          type="submit"
+          [disabled]="!filterButtonAvailable"
+        >
+          Застосувати
+        </button>
+        <button
+          class="cancel-filters"
+          type="button"
+          (click)="clearFilter()"
+          [disabled]="!clearFilterButtonAvailable"
+        >
+          Скинути всі фільтри
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="main-container">
+    <div class="title-box">
+      <h4>Знайти свого виконавця</h4>
+      <p>Найкращі архітектори та дизайнери всі на InteriorHub</p>
+      <div class="title-box-bottom">
+        <!-- <p>Перегляд 10 із 2408 компаній</p> -->
+        <select
+          [(ngModel)]="sorting"
+          class="input-select"
+          name="sorting"
+          id="sorting"
+          (input)="changeSorting()"
+        >
+          <option [defaultSelected]="true" value="rating">За рейтингом</option>
+          <option value="new">Спочатку нові</option>
+          <option value="cheap">Від дешевших</option>
+          <option value="expensive">Від дорожчих</option>
+        </select>
+      </div>
+    </div>
+    <div class="agencies-list">
+      <div class="loader-container" [ngClass]="{ active: loading }">
+        <div class="loader">
+          <img src="assets\images\icons\loader.png" alt="" />
+        </div>
+      </div>
+      <app-agency-card
+        *ngFor="let agency of agencies"
+        [agency]="agency"
+      ></app-agency-card>
+      <div
+        class="show-more-container"
+        [ngClass]="{ active: showMoreAvailable }"
+      >
+        <button type="button" (click)="showMore()">Показати більше</button>
+      </div>
+      <div class="loader-container" [ngClass]="{ active: showMoreLoading }">
+        <div class="loader">
+          <img src="assets\images\icons\loader.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
